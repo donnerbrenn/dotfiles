@@ -1,0 +1,233 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+
+# NOTE: Status bar LEFT
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+type = 'os'
+style = 'plain'
+foreground = 'p:lightgreen'
+background = 'transparent'
+template = '╭{{.Icon}}'
+
+[blocks.segments.properties]
+linux = ''
+
+[[blocks.segments]]
+type = 'session'
+style = 'plain'
+foreground = 'p:lightgreen'
+background = 'transparent'
+template = ' {{.UserName}}@{{.HostName}}'
+
+[[blocks.segments]]
+type = 'path'
+style = 'plain'
+foreground = 'p:lightblue'
+background = 'transparent'
+template = '  {{ .Path }}'
+
+[blocks.segments.properties]
+style = 'folder'
+
+# NOTE: Status bar RIGHT
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.sh']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.csv']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = '󰘦 '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.json']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.txt']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['Makefile']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = '󰚠 '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.frag']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.vert']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.c', '*.h']
+
+[[blocks.segments]]
+type = 'cmake'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.cpp', '*.hpp']
+
+[[blocks.segments]]
+type = 'python'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.py']
+
+[[blocks.segments]]
+type = 'lua'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.lua']
+
+[[blocks.segments]]
+type = 'go'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = ' '
+
+[blocks.segments.properties]
+display_mode = 'files'
+extensions = ['*.go', '*.mod']
+
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+template = '{{ .HEAD }} {{if gt .Behind 0}}{{end}}{{if gt .Ahead 0}}{{end}}'
+
+[blocks.segments.properties]
+branch_icon = '  '
+commit_icon = ' '
+fetch_status = true
+
+[[blocks.segments]]
+type = 'time'
+style = 'plain'
+foreground = 'p:lightgrey'
+background = 'transparent'
+
+[blocks.segments.properties]
+time_format = ' 15:04'
+
+# NOTE: Actual prompt
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'text'
+style = 'plain'
+foreground = 'p:lightgreen'
+background = 'transparent'
+template = '╰'
+
+[[blocks.segments]]
+type = 'text'
+style = 'plain'
+foreground_templates = [
+  '{{if gt .Code 0}}p:red{{end}}',
+  '{{if eq .Code 0}}p:white{{end}}',
+]
+background = 'transparent'
+template = ''
+
+# NOTE: Transient prompt
+[transient_prompt]
+foreground = 'p:grey'
+background = 'transparent'
+template = ' '
+
+# NOTE: Palette
+[palette]
+green = '#00FF00'
+red = '#FF0000'
+white = '#FFFFFF'
+lightgrey = '#A1A5A9'
+lightblue = '#82aaff'
+lightgreen = '#88FF88'
