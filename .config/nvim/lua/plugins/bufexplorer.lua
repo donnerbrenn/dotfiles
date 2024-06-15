@@ -1,1 +1,0 @@
-return { 'jlanzarotta/bufexplorer' }
