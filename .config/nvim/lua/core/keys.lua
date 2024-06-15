@@ -18,7 +18,10 @@ set("v", "<leader>su", ":sort u<CR>", { desc = "Sort lines and deduplicate" })
 set("n", "<C-b>", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
 -- Move around
+set("n", "<M-l>", "zL", { desc = "Move right" })
+set("n", "<M-h>", "zH", { desc = "Move left" })
 set("n", "<C-d>", "<C-d>zz", { desc = "Move down and center" })
+set("n", "<M-j>", "<C-d>zz", { desc = "Move down and center" })
 set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
@@ -26,6 +29,7 @@ set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 set("n", "<C-left>", "<cmd>bnext<CR>", { desc = "Jump to next buffer" })
 set("n", "<C-right>", "<cmd>bprevious<CR>", { desc = "Jump to previous buffer" })
 set("n", "<C-u>", "<C-u>zz", { desc = "Move up and center" })
+set("n", "<M-k>", "<C-u>zz", { desc = "Move up and center" })
 set("n", "M-j", "j^", { desc = "Goto to the beginning of the next line" })
 set("n", "M-up", "k^", { desc = "Goto to the beginning of the previous line" })
 
@@ -69,7 +73,14 @@ set("n", "<M-t>", "<C-W>+")
 set("n", "<M-s>", "<C-W>-")
 
 -- Deactivate cursor keys
-set("n", "<down>", '<cmd>echo "use j"<CR>', { desc = "How about no?" })
-set("n", "<up>", '<cmd>echo "use k"<CR>', { desc = "How about no?" })
-set("n", "<left>", '<cmd>echo "use h"<CR>', { desc = "How about no?" })
-set("n", "<right>", '<cmd>echo "use l"<CR>', { desc = "How about no?" })
+set("n", "<down>", '<cmd>echo "Use j!"<CR>', { desc = "How about no?" })
+set("n", "<up>", '<cmd>echo "Use k!"<CR>', { desc = "How about no?" })
+set("n", "<left>", '<cmd>echo "Use h!"<CR>', { desc = "How about no?" })
+set("n", "<right>", '<cmd>echo "Use l!"<CR>', { desc = "How about no?" })
+set("n", "<ScrollWheelUp>", '<cmd>echo "Use the keyboard!"<CR>', { desc = "How about no?" })
+set("n", "<ScrollWheelDown>", '<cmd>echo "Use the keyboard!"<CR>', { desc = "How about no?" })
+
+-- Foramtting
+set("n", "<leader>bf", function()
+	vim.lsp.buf.format()
+end, { noremap = true, silent = true, desc = "Format Buffer" })

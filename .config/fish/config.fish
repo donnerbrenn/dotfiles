@@ -4,3 +4,4 @@ end
 # starship init fish | source
 fish_config theme choose Lava
 oh-my-posh init fish --config ~/.config/oh-my-posh/config.toml | source
+zoxide init fish | source
