@@ -1,7 +1,5 @@
 return {
 	"catppuccin/nvim",
-	name = "catppuccin",
-	priority = 1000,
 	"Shatur/neovim-ayu",
 	"scottmckendry/cyberdream.nvim",
 	"catppuccin/nvim",
