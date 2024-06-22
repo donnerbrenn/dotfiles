@@ -1,0 +1,47 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20240514_000636
+====================================================================================================
+
+0     |Info:    Found file: default.orp attempting to validate header
+0     |Info:    Valid v4 profile found for default
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    |               Start device detection               |
+1012  |Info:    ------------------------------------------------------
+1013  |Info:    Initializing HID interfaces: Success
+1018  |Info:    ------------------------------------------------------
+1018  |Info:    |             Detecting I2C interfaces               |
+1018  |Info:    ------------------------------------------------------
+1018  |Info:    Registering I2C interface: /dev/i2c-3 Device 10DE:2786 Subsystem: 1462:5137
+1018  |Info:    Registering I2C interface: /dev/i2c-1 Device 10DE:2786 Subsystem: 1462:5137
+1018  |Info:    Registering I2C interface: /dev/i2c-8 Device 1022:790B Subsystem: 1043:8877
+1018  |Info:    Registering I2C interface: /dev/i2c-6 Device 1022:790B Subsystem: 1043:8877
+1018  |Info:    Registering I2C interface: /dev/i2c-4 Device 10DE:2786 Subsystem: 1462:5137
+1018  |Info:    Registering I2C interface: /dev/i2c-2 Device 10DE:2786 Subsystem: 1462:5137
+1018  |Info:    Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+1018  |Info:    Registering I2C interface: /dev/i2c-7 Device 1022:790B Subsystem: 1043:8877
+1018  |Info:    Registering I2C interface: /dev/i2c-5 Device 10DE:2786 Subsystem: 1462:5137
+1018  |Info:    ------------------------------------------------------
+1018  |Info:    |               Detecting I2C devices                |
+1018  |Info:    ------------------------------------------------------
+2051  |Info:    ------------------------------------------------------
+2051  |Info:    |               Detecting I2C PCI devices            |
+2051  |Info:    ------------------------------------------------------
+2052  |Info:    ------------------------------------------------------
+2052  |Info:    |               Detecting HID devices                |
+2052  |Info:    ------------------------------------------------------
+2132  |Info:    [ASUS TUF GAMING B650-PLUS WIFI] Registering RGB controller
+2194  |Info:    [ASUS TUF Gaming K3] Registering RGB controller
+2206  |Info:    [Glorious Model O / O-] Registering RGB controller
+2206  |Info:    ------------------------------------------------------
+2206  |Info:    |            Detecting libusb HID devices            |
+2206  |Info:    ------------------------------------------------------
+2353  |Info:    ------------------------------------------------------
+2353  |Info:    |              Detecting other devices               |
+2353  |Info:    ------------------------------------------------------
+2360  |Info:    ------------------------------------------------------
+2360  |Info:    |                Detection completed                 |
+2360  |Info:    ------------------------------------------------------
+6948  |Info:    Profile loading: Succeeded for ASUS TUF GAMING B650-PLUS WIFI @ HID: /dev/hidraw7
+6948  |Info:    Profile loading: Succeeded for ASUS TUF Gaming K3 @ HID: /dev/hidraw1
+6948  |Info:    Profile loading: Succeeded for Glorious Model O / O- @ HID: /dev/hidraw9
