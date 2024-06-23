@@ -1,13 +1,14 @@
 return {
-	'goolord/alpha-nvim',
+
+	"goolord/alpha-nvim",
 	dependencies = {
-		'nvim-tree/nvim-web-devicons',
+		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		local alpha = require 'alpha'
-		local dashboard = require 'alpha.themes.startify'
+		local alpha = require("alpha")
+		local dashboard = require("alpha.themes.startify")
 		dashboard.section.header.val = {
-			[[_____   __                     _____            ]],
+			[[_____   __                     _____]],
 			[[___  | / /_____ ______ ___   _____(_)_______ ___]],
 			[[__   |/ / _  _ \_  __ \__ | / /__  / __  __ `__ \]],
 			[[_  /|  /  /  __// /_/ /__ |/ / _  /  _  / / / / /]],

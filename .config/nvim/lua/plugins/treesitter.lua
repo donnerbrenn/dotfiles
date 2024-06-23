@@ -1,6 +1,10 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+	},
 	opts = {
 		ensure_installed = { "bash", "c", "diff", "html", "lua", "python", "luadoc", "markdown", "vim", "vimdoc" },
 		-- Autoinstall languages that are not installed

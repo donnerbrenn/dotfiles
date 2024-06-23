@@ -1,6 +1,6 @@
-vim.filetype.add {
+vim.filetype.add({
 	extension = {
-		frag = 'glsl',
-		vert = 'glsl',
+		frag = "glsl",
+		vert = "glsl",
 	},
-}
+})
