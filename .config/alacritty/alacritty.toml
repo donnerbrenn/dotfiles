@@ -1,0 +1,21 @@
+[window]
+startup_mode = "Maximized"
+opacity = 0.95
+blur = true
+padding = {x=0,y=5}
+[font]
+normal.family = "RobotoMono Nerd Font"
+bold.family = "RobotoMono Nerd Font"
+italic.family = "RobotoMono Nerd Font"
+bold_italic.family = "RobotoMono Nerd Font"
+size = 16.5
+[colors]
+primary.background = "#1e1e2f"
+[cursor]
+style.shape="Block"
+style.blinking = "Always"
+[keyboard]
+bindings = [
+	{ key = "F11", action = "ToggleFullscreen" },
+	{ key = "End", action ="ScrollToBottom" },
+]
