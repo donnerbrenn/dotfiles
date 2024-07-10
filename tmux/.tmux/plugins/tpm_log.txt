@@ -1,0 +1,39 @@
+[2024-06-28 22:41:31.756]	 List of discovered tpm plugins: christoomey/vim-tmux-navigator
+[2024-06-28 22:41:31.762]	 Invoking /home/tb/.tmux/plugins/tpm/bin/install_plugins
+[2024-06-28 22:41:31.782]	 Installing "vim-tmux-navigator"
+[2024-06-28 22:41:32.485]	   "vim-tmux-navigator" download success
+[2024-06-28 22:41:32.493]	 Done.
+
+[2024-07-08 18:41:36.695]	 List of discovered tpm plugins: christoomey/vim-tmux-navigator
+[2024-07-08 18:41:36.704]	 Invoking /home/tb/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-08 18:41:36.733]	 Already installed "vim-tmux-navigator"
+[2024-07-08 18:41:36.742]	 Invoking /home/tb/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-08 18:41:36.755]	 Updating all plugins!
+[2024-07-08 18:41:36.755]	 
+[2024-07-08 18:41:37.424]	   "vim-tmux-navigator" update success
+[2024-07-08 18:41:37.426]	     | Bereits aktuell.
+[2024-07-08 18:41:37.436]	 Invoking /home/tb/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-08 18:41:37.470]	 Done.
+
+[2024-07-08 18:46:39.793]	 List of discovered tpm plugins: christoomey/vim-tmux-navigator
+[2024-07-08 18:46:39.802]	 Invoking /home/tb/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-08 18:46:39.830]	 Already installed "vim-tmux-navigator"
+[2024-07-08 18:46:39.839]	 Invoking /home/tb/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-08 18:46:39.852]	 Updating all plugins!
+[2024-07-08 18:46:39.852]	 
+[2024-07-08 18:46:40.433]	   "vim-tmux-navigator" update success
+[2024-07-08 18:46:40.435]	     | Bereits aktuell.
+[2024-07-08 18:46:40.445]	 Invoking /home/tb/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-08 18:46:40.479]	 Done.
+
+[2024-07-10 12:56:02.244]	 List of discovered tpm plugins: christoomey/vim-tmux-navigator
+[2024-07-10 12:56:02.252]	 Invoking /home/tb/.tmux/plugins/tpm/bin/install_plugins
+[2024-07-10 12:56:02.282]	 Already installed "vim-tmux-navigator"
+[2024-07-10 12:56:02.291]	 Invoking /home/tb/.tmux/plugins/tpm/bin/update_plugins all
+[2024-07-10 12:56:02.304]	 Updating all plugins!
+[2024-07-10 12:56:02.304]	 
+[2024-07-10 12:56:02.960]	   "vim-tmux-navigator" update success
+[2024-07-10 12:56:02.962]	     | Bereits aktuell.
+[2024-07-10 12:56:02.971]	 Invoking /home/tb/.tmux/plugins/tpm/bin/clean_plugins all
+[2024-07-10 12:56:03.007]	 Done.
+
