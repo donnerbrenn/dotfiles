@@ -15,7 +15,7 @@
 
 -- Configuration settings: https://conky.cc/config_settings
 conky.config = {
-	font = "RobotoMonoNerdFont:size=16",
+	font = "RobotoMonoNerdFont:size=14",
 	default_color = "white",
 	default_outline_color = "black",
 	default_shade_color = "white",
@@ -39,8 +39,7 @@ conky.config = {
 	gap_x = 0,
 	gap_y = 0,
 	minimum_height = 1400,
-	minimum_width = 370,
-	maximum_width = 370,
+	minimum_width = 350,
 	net_avg_samples = 2,
 	no_buffers = true,
 	out_to_console = false,
@@ -59,22 +58,17 @@ conky.config = {
 -- Variables: https://conky.cc/variables
 conky.text = [[
 ${image ~/Bilder/gradient.png}
-${font :size=78}${alignc}${time %H:%M}${font :size=14}
-${font :size=24}${alignc}${time %d.%m.%y} ${font RobotoMonoNerdFont:size=14}
+	CPU:  ${cpubar cpu0 24,330} ${cpu cpu0}%
 $hr
- CPU:   ${cpubar cpu0 16,160} $alignr ${cpu cpu0}% 
+ RAM:   ${membar 14,330} $mem 
 $hr
- GPU:   ${nvidiabar 16,160 gpuutil} $alignr ${nvidia gpuutil}% 
-$hr
- RAM:   ${membar 16,160} $alignr $mem 
-$hr
- Root:  ${fs_bar 16,160 /} $alignr ${fs_free /} 
- Home:  ${fs_bar 16,160 /home} $alignr ${fs_free /home} 
- 2TB:   ${fs_bar 16,160 /media/2tb} $alignr ${fs_free /media/2tb} 
- Steam: ${fs_bar 16,160 /media/steam} $alignr ${fs_free /media/steam} 
+ Root:  ${fs_bar 14,330 /} ${fs_free /} 
+ Home:  ${fs_bar 14,330 /home} ${fs_free /home} 
+ 2TB:   ${fs_bar 14,330 /media/2tb} ${fs_free /media/2tb} 
+ Steam: ${fs_bar 14,330 /media/steam} ${fs_free /media/steam} 
 $hr
  Down: ${downspeed}
- ${downspeedgraph 120,345 -l}
+ ${downspeedgraph 120,330 -l}
  Up:${upspeed}
- ${upspeedgraph 120,345 -l}
+ ${upspeedgraph 120,330 -l}
 ]]
