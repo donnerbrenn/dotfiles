@@ -1,0 +1,1 @@
+ddcutil -d 2 setvcp 0x60 0x11

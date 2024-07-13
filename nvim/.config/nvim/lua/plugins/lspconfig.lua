@@ -123,7 +123,7 @@ return { -- LSP Configuration & Plugins
 		local servers = {
 			glsl_analyzer = {},
 			-- anakin_language_server = {},
-			clangd = {},
+			-- clangd = {},
 			pyright = {},
 			-- checkmake = {},
 			rust_analyzer = {},
