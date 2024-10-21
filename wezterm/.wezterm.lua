@@ -14,10 +14,10 @@ config.max_fps = 60
 config.window_background_opacity = 0.9
 -- Style
 config.enable_tab_bar = false
-config.color_scheme = "AdventureTime"
 config.colors = {
 	cursor_bg = "white",
 	foreground = "white",
+	background = "#1e1c40",
 	selection_fg = "white",
 	selection_bg = "green",
 	brights = {
@@ -27,7 +27,7 @@ config.colors = {
 		"yellow",
 		"#82aaff", --folders
 		"fuchsia",
-		"#82df4a", --executables
+		"#88ff88", --executables
 		"white",
 	},
 }
