@@ -4,6 +4,8 @@ eval "$(zoxide init zsh)"
 export EDITOR=nvim
 export GCM_CREDENTIAL_STORE=secretservice
 
+alias l="exa"
+
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000

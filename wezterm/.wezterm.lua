@@ -10,7 +10,7 @@ end)
 -- This will hold the configuration
 local config = wezterm.config_builder()
 -- Window
-config.max_fps = 60
+config.max_fps = 144
 config.window_background_opacity = 0.9
 -- Style
 config.enable_tab_bar = false

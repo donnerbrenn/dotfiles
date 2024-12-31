@@ -1,0 +1,7 @@
+cursor-style = block
+font-size = 17
+background = #000000
+custom-shader = warping.glsl
+custom-shader-animation = always
+font-family = RobotoMono Nerd Font
+keybind = ctrl+shift+r=reload_config
