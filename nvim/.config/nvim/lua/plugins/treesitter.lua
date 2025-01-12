@@ -6,7 +6,19 @@ return { -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	opts = {
-		ensure_installed = { "bash", "c", "diff", "html", "lua", "python", "luadoc", "markdown", "vim", "vimdoc" },
+		ensure_installed = {
+			"bash",
+			"c",
+			"diff",
+			"html",
+			"lua",
+			"python",
+			"luadoc",
+			"markdown",
+			"vim",
+			"vimdoc",
+			"glsl",
+		},
 		-- Autoinstall languages that are not installed
 		auto_install = true,
 		highlight = {

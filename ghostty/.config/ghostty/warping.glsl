@@ -97,7 +97,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     col = 1.0 - col;
     col *= 1.1 * col;
 
-    col *= .2;
+    col *= .15;
     vec2 uv = fragCoord / iResolution.xy;
     // Sample the terminal screen texture including alpha channel
     vec4 terminalColor = texture(iChannel0, uv);
