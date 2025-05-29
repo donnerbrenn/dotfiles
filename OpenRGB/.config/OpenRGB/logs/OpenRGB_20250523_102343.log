@@ -1,0 +1,50 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20250523_102343
+====================================================================================================
+
+0     |Info:    Found file: default.orp attempting to validate header
+0     |Info:    Valid v4 profile found for default
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    |               Start device detection               |
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    Initializing HID interfaces: Success
+1017  |Info:    ------------------------------------------------------
+1017  |Info:    |             Detecting I2C interfaces               |
+1017  |Info:    ------------------------------------------------------
+1017  |Info:    Registering I2C interface: /dev/i2c-3 Device 1022:790B Subsystem: 1043:8877
+1017  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1017  |Info:    Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+1017  |Info:    Registering I2C interface: /dev/i2c-1 Device 1022:790B Subsystem: 1043:8877
+1018  |Info:    Registering I2C interface: /dev/i2c-8 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Info:    Registering I2C interface: /dev/i2c-6 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Info:    Registering I2C interface: /dev/i2c-4 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1018  |Info:    Registering I2C interface: /dev/i2c-11 Device 0000:0000 Subsystem: 0000:0000
+1018  |Info:    Registering I2C interface: /dev/i2c-2 Device 1022:790B Subsystem: 1043:8877
+1018  |Info:    Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+1018  |Info:    Registering I2C interface: /dev/i2c-9 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Info:    Registering I2C interface: /dev/i2c-7 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Info:    Registering I2C interface: /dev/i2c-5 Device 1002:7550 Subsystem: 1EAE:8811
+1018  |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+1018  |Info:    Registering I2C interface: /dev/i2c-12 Device 0000:0000 Subsystem: 0000:0000
+1018  |Info:    ------------------------------------------------------
+1018  |Info:    |               Detecting I2C devices                |
+1018  |Info:    ------------------------------------------------------
+2082  |Info:    ------------------------------------------------------
+2082  |Info:    |               Detecting I2C PCI devices            |
+2082  |Info:    ------------------------------------------------------
+2083  |Info:    ------------------------------------------------------
+2083  |Info:    |               Detecting HID devices                |
+2083  |Info:    ------------------------------------------------------
+2156  |Info:    [ASUS TUF GAMING B650-PLUS WIFI] Registering RGB controller
+2168  |Info:    [Glorious Model O / O-] Registering RGB controller
+2168  |Info:    ------------------------------------------------------
+2168  |Info:    |            Detecting libusb HID devices            |
+2168  |Info:    ------------------------------------------------------
+2236  |Info:    ------------------------------------------------------
+2236  |Info:    |              Detecting other devices               |
+2236  |Info:    ------------------------------------------------------
+2242  |Info:    ------------------------------------------------------
+2242  |Info:    |                Detection completed                 |
+2242  |Info:    ------------------------------------------------------
