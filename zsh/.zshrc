@@ -22,6 +22,7 @@ alias lh='exa --icons -lah'
 alias fzf='fzf --preview="bat --color=always {}"'
 alias fff='find . -type f | fzf --preview "bat --color=always {}"'
 alias b='time cat ~/bible.txt'
+alias man='batman'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

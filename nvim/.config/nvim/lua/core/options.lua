@@ -3,13 +3,12 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
-vim.opt.tabstop = 2
-vim.opt.expandtab = false
 
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 -- Enable mouse mode, can be useful for resizing splits for example!
 -- vim.opt.mouse = "a"
 
