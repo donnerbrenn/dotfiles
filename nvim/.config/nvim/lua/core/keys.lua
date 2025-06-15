@@ -13,6 +13,17 @@ set("v", "<leader>si", ":sort i<CR>", { desc = "Sort lines, ignore case" })
 set("v", "<leader>ss", ":sort<CR>", { desc = "Sort lines" })
 set("v", "<leader>su", ":sort u<CR>", { desc = "Sort lines and deduplicate" })
 
+--cases
+set("n", "<leader>~w", "g~iw", { desc = "Invert case for current word" })
+set("n", "<leader>~p", "g~ip", { desc = "Invert case for current paragraph" })
+set("n", "<leader>~l", "g~~", { desc = "Invert case for current line" })
+set("n", "<leader>Uw", "gUiw", { desc = "Upper case for current word" })
+set("n", "<leader>uw", "guiw", { desc = "Lower case for current word" })
+set("n", "<leader>Up", "gUip", { desc = "Upper case for current paragraph" })
+set("n", "<leader>up", "guip", { desc = "Lower case for current paragraph" })
+set("n", "<leader>Ul", "gUU", { desc = "Upper case for current line" })
+set("n", "<leader>ul", "guu", { desc = "Lower case for current line" })
+
 -- Buffers
 set("n", "<C-b>", "<cmd>bd<CR>", { desc = "Close current buffer" })
 
@@ -71,6 +82,6 @@ set("n", "<ScrollWheelUp>", '<cmd>echo "Use the keyboard!"<CR>', { desc = "How a
 set("n", "<ScrollWheelDown>", '<cmd>echo "Use the keyboard!"<CR>', { desc = "How about no?" })
 
 -- Formatting
-set("n", "<leader>bf", function()
+set("n", "<leader>f", function()
 	vim.lsp.buf.format()
 end, { desc = "Format Buffer" })

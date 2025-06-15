@@ -10,6 +10,7 @@ SAVEHIST=10000
 setopt SHARE_HISTORY
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
 alias n='nvim'
+alias w='curl wttr.in'
 alias ffxiv='cd ~/Developement/FFXIV && ./create.py'
 alias asap='cd ~/Developement/asap && ./create.py'
 alias y='yay'
@@ -23,9 +24,16 @@ alias fzf='fzf --preview="bat --color=always {}"'
 alias fff='find . -type f | fzf --preview "bat --color=always {}"'
 alias b='time cat ~/bible.txt'
 alias man='batman'
+alias tteasy='tt -words ~/tt/wortliste-easy.txt'
+alias tthard='tt -words ~/tt/wortliste-hard.txt'
+alias ttrare='tt -words ~/tt/wortliste-rare.txt'
+alias ttrt='tt -words ~/tt/wortliste-rtui.txt'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+
+bindkey "\e[42~" backward-kill-word
