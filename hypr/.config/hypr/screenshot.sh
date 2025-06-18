@@ -13,6 +13,7 @@ case "$1" in
   all)
     grim "$tmpfile"
     copy_to_clipboard "$tmpfile"
+    notify-send "Bildschirme" "Screenshot in der Zwischenablage"
     ;;
 # window)
 #     # Aktives Fenster ermitteln und Screenshot machen
@@ -29,6 +30,7 @@ case "$1" in
     read -r x y w h <<< "$monbox"
     grim -g "${x},${y} ${w}x${h}" "$tmpfile"
     copy_to_clipboard "$tmpfile"
+    notify-send "Workspace" "Screenshot in der Zwischenablage"
     ;;
   *)
     echo "Usage: $0 {all|workspace}"
