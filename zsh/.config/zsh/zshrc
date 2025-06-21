@@ -1,15 +1,42 @@
+source ~/.config/zsh/prompt
+
+export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margin=1% --color=dark"
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
-export LIBVA_DRIVER_NAME=radeonsi
 export EDITOR=nvim
-export FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margin=1% --color=dark"
 export GCM_CREDENTIAL_STORE=secretservice
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+
+plugins=(
+  git                         # Standard‑Git‑Aliaspaket
+  fzf                         # fuzzy finder in $PATH
+  zsh-autosuggestions         # Tipp‑Vervollständigung aus History
+  zsh-syntax-highlighting     # farbige Syntax während des Tippens
+)
+
+
+# Funktion zum Neuladen der .zshrc
+reload_zshrc() {
+  source ~/.zshrc
+    print -Pn "\n%F{green}✅ .zshrc neu geladen!%f\n"
+    echo "/n"
+  zle reset-prompt
+}
+
+# Shortcut (Ctrl+R) binden
+autoload -U add-zsh-hook
+
+zle -N reload_zshrc
+bindkey '^X' reload_zshrc
+
+
+
+
+setopt correct
+
 setopt SHARE_HISTORY
-# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.toml)"
-source ~/.config/zsh/prompt
 alias v='nvim'
 alias w='curl wttr.in'
 alias ffxiv='cd ~/Developement/FFXIV && ./create.py'
@@ -29,7 +56,27 @@ alias tteasy='tt -words ~/tt/wortliste-easy.txt'
 alias tthard='tt -words ~/tt/wortliste-hard.txt'
 alias ttrare='tt -words ~/tt/wortliste-rare.txt'
 alias ttrt='tt -words ~/tt/wortliste-rtui.txt'
-alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
+# alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=right:85% | xargs -ro yay -S"
+
+alias yaya="yay -Sl | awk '\$1 == \"aur\" { print \$2 \"\t\" \$1 }' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S"
+alias yayf="yay -Sl | awk '
+  \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 }
+  !(\$2 in seen) { seen[\$2] = \$1 }
+  END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] }
+' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:75% | awk '{print \$1}' | xargs -ro yay -S"
+# alias pacf="pacman -Sl | fzf --multi --preview 'pacman -Sii {2}' --preview-window=right:50% | awk '{print \$2}' | xargs -ro sudo pacman -S"
+
+alias pacf="pacman -Sl | awk '
+  \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 }
+  !(\$2 in seen) { seen[\$2] = \$1 }
+  END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] }
+' | sort | fzf --multi --with-nth=1 --preview 'pacman -Sii {1}' --preview-window=right:75% | awk '{print \$1}' | xargs -ro sudo pacman -S"
+
+
+alias pacli='pacman -Qq | fzf --preview "echo \"--- Paketinfo ---\" && pacman -Qi {} && echo && echo \"--- Dateien ---\" && pacman -Ql {} | head -40" --preview-window=right:85%'
+alias please='sudo $(fc -ln -1)'
+alias pacc='sudo pacman -Rns $(pacman -Qdtq)'
+alias ccleaner='sudo paccache -r && yay -Sc --noconfirm'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -41,3 +88,4 @@ bindkey "^e" end-of-line
 bindkey "^j" backward-word
 bindkey "^k" forward-word
 bindkey "^h" backward-kill-word
+bindkey -v

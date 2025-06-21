@@ -34,24 +34,17 @@ local YELLOW='214'
 local BLUE='45'
 local CYAN='37'
 local WHITE='255'
-# local RESET='%f'
 
 # Transient Prompt Setup
 setopt prompt_subst
 setopt transient_rprompt  # die rechte Prompt-Zeile wird transient
+# setopt transient_lprompt  # die rechte Prompt-Zeile wird transient
 
 # Prompt definieren
-PROMPT=$'%F{$GREEN}╭%m%f %F{$BLUE}$(short_cwd)%f '
+PROMPT=$'%F{$GREEN}╭%m%f %F{$BLUE}$(short_cwd)%f '
 PROMPT+=$'%F{$YELLOW}$(git_prompt_info)%f\n'  # Git-Info in neuer Zeile
 PROMPT+=$'%F{$GREEN}╰ %f'
 RPROMPT=$'%F{$WHITE}󰥔 %*%f'  # Uhr-Icon + 24h Zeit
-
-# Rechte Prompt (Zeit)
-
-# Beispiel-Output sieht dann so aus:
-# ╭ tb@tardis ~/.../gtk_4k_template
-#  main*
-# ╰                                        11:30:12
 
 # Optional: zsh-syntax-highlighting und autosuggestions für nicer UX
 # (wenn nicht installiert, einfach weglassen)
