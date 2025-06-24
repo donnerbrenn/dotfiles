@@ -3,7 +3,7 @@ return { -- Autoformat
 	lazy = false,
 	keys = {
 		{
-			"<leader>f",
+			"<leader>bb",
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
@@ -25,7 +25,17 @@ return { -- Autoformat
 		end,
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "pyright" },
+			python = { "autopep8" },
+			json = { "jq" },
+			rust = { "ast-grep" },
+			c = { "ast-grep" },
+			cpp = { "ast-grep" },
+			zsh = { "beautysh" },
+			sh = { "beautysh" },
+			go = { "crlfmt" },
+			html = { "prettierd" },
+			yaml = { "prettierd" },
+			sql = { "sqlfmt" },
 		},
 	},
 }

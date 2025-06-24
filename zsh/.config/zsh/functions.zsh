@@ -1,15 +1,16 @@
 
 # Funktion zum Neuladen der .zshrc
 reload_zshrc() {
-  source ~/.zshrc
+    source ~/.zshrc
     print -Pn "\n%F{green}✅ .zshrc neu geladen!%f\n"
     echo "/n"
-  zle reset-prompt
+    zle reset-prompt
 }
 
+#Listet alle verfügbaren aliase auf
 aliases() {
-  local file=~/.config/zsh/aliases.zsh 
-  local selected_line alias_name
+    local file=~/.config/zsh/aliases.zsh
+    local selected_line alias_name
 
     selected_line=$(awk -F'#' '
       /^alias / {
@@ -24,10 +25,10 @@ aliases() {
 
     # Nur den Alias-Namen extrahieren (vor dem #)
     alias_name=$(echo "$selected_line" | awk '{print $1}')
-    
+
     if [[ -n $alias_name ]]; then
-      # eval alias ausführen
-      eval "$alias_name"
+        # eval alias ausführen
+        eval "$alias_name"
     fi
 }
 
