@@ -41,7 +41,7 @@ setopt transient_rprompt  # die rechte Prompt-Zeile wird transient
 # setopt transient_lprompt  # die rechte Prompt-Zeile wird transient
 
 # Prompt definieren
-PROMPT=$'%F{$GREEN}╭%m%f %F{$BLUE}$(short_cwd)%f '
+PROMPT=$'%F{$GREEN}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
 PROMPT+=$'%F{$YELLOW}$(git_prompt_info)%f\n'  # Git-Info in neuer Zeile
 RPROMPT=$'%F{$WHITE}󰥔 %*%f'  # Uhr-Icon + 24h Zeit
 PROMPT+=$'%F{$GREEN}╰ %f'
