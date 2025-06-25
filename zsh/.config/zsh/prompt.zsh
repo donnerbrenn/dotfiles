@@ -38,10 +38,15 @@ local WHITE='255'
 # Transient Prompt Setup
 setopt prompt_subst
 setopt transient_rprompt  # die rechte Prompt-Zeile wird transient
-# setopt transient_lprompt  # die rechte Prompt-Zeile wird transient
 
+# make the prompt red, if we are root
+if [[ $EUID -eq 0 ]]; then
+    USER_HOST_COLOR=$RED
+else
+    USER_HOST_COLOR=$GREEN
+fi
 # Prompt definieren
-PROMPT=$'%F{$GREEN}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
+PROMPT=$'%F{$USER_HOST_COLOR}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
 PROMPT+=$'%F{$YELLOW}$(git_prompt_info)%f\n'  # Git-Info in neuer Zeile
 RPROMPT=$'%F{$WHITE}󰥔 %*%f'  # Uhr-Icon + 24h Zeit
 PROMPT+=$'%F{$GREEN}╰ %f'
