@@ -45,8 +45,17 @@ if [[ $EUID -eq 0 ]]; then
 else
     USER_HOST_COLOR=$GREEN
 fi
+
+# Dirty-Status anzeigen, wenn nötig
+function git_dirty() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+    [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*" || echo ""
+}
+
 # Prompt definieren
-PROMPT=$'%F{$USER_HOST_COLOR}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
+#
+PROMPT=$'%F{$USER_HOST_COLOR}╭%n@%m%f %F{$BLUE}$(short_cwd)%f $(git_prompt) '
+# PROMPT=$'%F{$USER_HOST_COLOR}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
 PROMPT+=$'%F{$YELLOW}$(git_prompt_info)%f\n'  # Git-Info in neuer Zeile
 RPROMPT=$'%F{$WHITE}󰥔 %*%f'  # Uhr-Icon + 24h Zeit
 PROMPT+=$'%F{$USER_HOST_COLOR}╰ %f'
