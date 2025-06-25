@@ -49,7 +49,7 @@ fi
 PROMPT=$'%F{$USER_HOST_COLOR}╭%n@%m%f %F{$BLUE}$(short_cwd)%f '
 PROMPT+=$'%F{$YELLOW}$(git_prompt_info)%f\n'  # Git-Info in neuer Zeile
 RPROMPT=$'%F{$WHITE}󰥔 %*%f'  # Uhr-Icon + 24h Zeit
-PROMPT+=$'%F{$GREEN}╰ %f'
+PROMPT+=$'%F{$USER_HOST_COLOR}╰ %f'
 
 # Optional: zsh-syntax-highlighting und autosuggestions für nicer UX
 # (wenn nicht installiert, einfach weglassen)
