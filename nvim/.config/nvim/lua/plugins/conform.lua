@@ -27,6 +27,7 @@ return { -- Autoformat
 			lua = { "stylua" },
 			python = { "autopep8" },
 			json = { "jq" },
+			jsonc = { "jq" },
 			rust = { "ast-grep" },
 			c = { "ast-grep" },
 			cpp = { "ast-grep" },
