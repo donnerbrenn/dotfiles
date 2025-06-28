@@ -1,4 +1,16 @@
 
+
+# Prüft, ob das genannte Paket installiert ist und installiert es bei Bedarf nach.
+ensure_installed() {
+    local pkg="$1"
+    if pacman -Q "$pkg" &>/dev/null; then
+        echo "✅ Paket '$pkg' ist bereits installiert."
+    else
+        echo "📦 '$pkg' ist nicht installiert. Installation wird gestartet..."
+        sudo pacman -S "$pkg" || echo "❌ Fehler bei der Installation von '$pkg'."
+    fi
+}
+
 # Funktion zum Neuladen der .zshrc
 reload_zshrc() {
     source ~/.zshrc

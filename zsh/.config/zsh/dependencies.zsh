@@ -1,0 +1,6 @@
+ensure_installed bat
+ensure_installed git
+ensure_installed fzf
+ensure_installed btop
+ensure_installed neovim
+ensure_installed bat-extras

@@ -8,5 +8,6 @@ source ~/.config/zsh/keys.zsh
 source ~/.config/zsh/options.zsh
 source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/autostart.zsh
+source ~/.config/zsh/dependencies.zsh
 
 
