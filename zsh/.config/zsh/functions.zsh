@@ -1,13 +1,21 @@
 
 
 # Prüft, ob das genannte Paket installiert ist und installiert es bei Bedarf nach.
-ensure_installed() {
-    local pkg="$1"
-    if pacman -Q "$pkg" &>/dev/null; then
-        echo "✅ Paket '$pkg' ist bereits installiert."
+ensure_pkg_installed() {
+    local missing_pkgs=()
+
+    for pkg in "$@"; do
+        if pacman -Q "$pkg" &>/dev/null; then
+        else
+            echo "📦 '$pkg' ist nicht installiert."
+            missing_pkgs+=("$pkg")
+        fi
+    done
+
+    if (( ${#missing_pkgs[@]} > 0 )); then
+        echo "🚀 Installation wird gestartet für: ${missing_pkgs[*]}"
+        sudo pacman -S --noconfirm "${missing_pkgs[@]}" || echo "❌ Fehler bei der Installation von: ${missing_pkgs[*]}"
     else
-        echo "📦 '$pkg' ist nicht installiert. Installation wird gestartet..."
-        sudo pacman -S "$pkg" || echo "❌ Fehler bei der Installation von '$pkg'."
     fi
 }
 
