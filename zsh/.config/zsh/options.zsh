@@ -1,3 +1,4 @@
+
 setopt SHARE_HISTORY
 setopt correct
 

@@ -1,3 +1,5 @@
+unset GHOSTTY_SHELL_INTEGRATION_NO_SUDO
+
 source ~/.config/zsh/history.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/prompt.zsh
