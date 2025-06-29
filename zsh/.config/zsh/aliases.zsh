@@ -9,10 +9,10 @@ alias gf='git pull' #git pull
 alias gp='git push' #git push
 alias off='systemctl poweroff' #turn off computer
 alias reboot='systemctl reboot' #reboot computer
-alias l='exa --icons -l' #shortcut for exa
-alias ls='exa --icons' #replace ls by exa
-alias la='exa --icons -la' #long exa
-alias lh='exa --icons -lah' #long exa with hidden files
+alias l='eza --icons -l' #shortcut for eza
+alias ls='eza --icons' #replace ls by eza
+alias la='eza --icons -la' #long eza
+alias lh='eza --icons -lah' #long eza with hidden files
 alias ff='fzf --preview="bat --color=always {}"' #find a file or directory
 alias fff='find . -type f | fzf --preview "bat --color=always {}"' #find a file
 alias b='time cat ~/bible.txt' #benchmark terminal with the full bible

@@ -24,6 +24,12 @@ return {
 		-- Add your own debuggers here
 		"leoluz/nvim-dap-go",
 		"mfussenegger/nvim-dap-python",
+		"rogalmic/vscode-bash-debug",
+		"vadimcn/vscode-lldb",
+		"microsoft/vscode-cpptools",
+		"microsoft/debugpy",
+		"go-delve/delve",
+		"tomblind/local-lua-debugger-vscode",
 	},
 	config = function()
 		local dap = require("dap")

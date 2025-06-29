@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	callback = function()
 		local highlights = {
 			"Normal",
+			"NormalNC",
 			"LineNr",
 			"Folded",
 			"NonText",
