@@ -2,7 +2,7 @@ return {
 	"catppuccin/nvim",
 	name = "catppuccin",
 	config = function()
-		vim.cmd.colorscheme("catppuccin")
+		vim.cmd.colorscheme("wildcharm")
 	end,
 	-- "Shatur/neovim-ayu",
 	-- "scottmckendry/cyberdream.nvim",
