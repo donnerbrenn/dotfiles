@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 local set = vim.keymap.set
+
+-- Select stuff
+set("n", "<leader>y", 'm"ggVGy\'"', { desc = "Yank content of the entire buffer" })
+set("n", "<leader>a", "ggVG", { desc = "Select content of the entire buffer" })
+
 --Config
 set("n", "<leader>R", ":so %<CR>", { desc = "Reload config" })
 

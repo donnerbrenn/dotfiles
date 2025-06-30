@@ -42,6 +42,9 @@ return { -- Autocompletion
 		luasnip.config.setup({})
 		cmp.setup.filetype({ "sql" }, {
 			sources = {
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" },
+				{ name = "path" },
 				{ name = "vim-dadbod-completion" },
 				{ name = "buffer" },
 			},
@@ -113,6 +116,7 @@ return { -- Autocompletion
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "buffer" },
 			},
 		})
 	end,

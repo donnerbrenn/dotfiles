@@ -26,7 +26,7 @@ alias ccleaner='sudo paccache -r && yay -Sc --noconfirm' #purge pacman and yay c
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)' #remove orphaned packages
 alias sysf='systemctl list-units --type=service --all | fzf | awk '{print $1}' | xargs -r systemctl restart' #find an (re)start services
 alias jcf=' journalctl --no-pager -o short-iso | fzf --ansi --reverse' #search through the system journal
-
+alias :qa='exit' #exit shell, like we are in vim
 alias yaya="yay -Sl | awk '\$1 == \"aur\" { print \$2 \"\t\" \$1 }' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #install packages from AUR
 
 alias yayf="yay -Sl | awk ' \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 } !(\$2 in seen) { seen[\$2] = \$1 } END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] } ' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #search packages via yay
