@@ -1,51 +1,29 @@
--- ~/.config/nvim/lua/plugins/toggleterm.lua
-
 return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
-	event = "VeryLazy",
 	config = function()
 		require("toggleterm").setup({
-			-- Größe des horizontalen Terminals in Zeilen
-			size = 12,
-
-			-- STRG + \ öffnet das Terminal
-			open_mapping = [[<C-\>]],
-
-			-- Terminal immer unten anzeigen
-			direction = "horizontal",
-
-			-- Start im Insert-Modus (logisch bei Shells)
+			size = 15,
+			open_mapping = [[<leader>t]],
+			hide_numbers = true,
+			shade_terminals = true,
+			shading_factor = 1,
 			start_in_insert = true,
-
-			-- Eingaben und Tastenkürzel im Insert-/Terminalmodus
 			insert_mappings = true,
 			terminal_mappings = true,
-
-			-- Einstellungen beibehalten (Größe, Modus)
 			persist_size = true,
-			persist_mode = true,
-
-			-- Terminal schließen bei Exit
+			direction = "horizontal", -- kannst auch 'vertical' oder 'float' wählen
 			close_on_exit = true,
-
-			-- Nutze Shell aus Vim-Konfiguration
 			shell = vim.o.shell,
 		})
 
-		-- Optional: spezielles Terminal z. B. für lazygit
-		local Terminal = require("toggleterm.terminal").Terminal
-		local lazygit = Terminal:new({
-			cmd = "lazygit",
-			hidden = true,
-			direction = "float",
-		})
+		-- ESC zum Verlassen des Terminalmodus
+		vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
-		vim.keymap.set("n", "<leader>g", function()
-			lazygit:toggle()
-		end, { desc = "Toggle LazyGit Terminal" })
-
-		-- Optional: direkter Shortcut für Standard-Terminal
-		vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle Terminal Below" })
+		-- Fensterwechsel (auch im Terminal-Modus!)
+		vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
+		vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
+		vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
+		vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
 	end,
 }
