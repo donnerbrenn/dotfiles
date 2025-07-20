@@ -1,4 +1,5 @@
 alias v='nvim' #start nvim
+alias lsblk='lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT' #make lsblk more verbose and useful
 alias w='curl wttr.in' #show weather
 alias ffxiv='cd ~/Developement/FFXIV && ./create.py' #fetch ffxiv stats
 alias asap='cd ~/Developement/asap && ./create.py' #fetch asap stats
@@ -21,12 +22,14 @@ alias tteasy='tt -words ~/tt/wortliste-easy.txt' #start a typing test with easy 
 alias tthard='tt -words ~/tt/wortliste-hard.txt' #start a typing test with hard words
 alias ttrare='tt -words ~/tt/wortliste-rare.txt' #start a typing test with rare letter words
 alias ttrt='tt -words ~/tt/wortliste-rtui.txt' #start a typing test with r/t/u/i letter words
+alias ttio='tt -words ~/tt/wortliste-io.txt' #start a typing test with r/t/u/i letter words
 alias please='sudo $(fc -ln -1)' #rerun the last command with sudo
 alias ccleaner='sudo paccache -r && yay -Sc --noconfirm' #purge pacman and yay caches
 alias pacc='sudo pacman -Rns $(pacman -Qdtq)' #remove orphaned packages
 alias sysf='systemctl list-units --type=service --all | fzf | awk '{print $1}' | xargs -r systemctl restart' #find an (re)start services
 alias jcf=' journalctl --no-pager -o short-iso | fzf --ansi --reverse' #search through the system journal
 alias :qa='exit' #exit shell, like we are in vim
+alias :qa!='exit' #exit shell, like we are in vim
 alias yaya="yay -Sl | awk '\$1 == \"aur\" { print \$2 \"\t\" \$1 }' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #install packages from AUR
 
 alias yayf="yay -Sl | awk ' \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 } !(\$2 in seen) { seen[\$2] = \$1 } END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] } ' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #search packages via yay

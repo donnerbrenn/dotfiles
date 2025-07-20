@@ -10,4 +10,5 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+[[ -t 0 ]] && stty -ixon
 # zstyle ':comexport FZF_DEFAULT_OPTS="--layout=reverse --border=bold --border=rounded --margin=1% --color=dark"

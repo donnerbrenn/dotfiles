@@ -2,9 +2,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 local set = vim.keymap.set
 
+-- Make surround a little bit easier to handle
+set("n", "<leader>123", ':normal! ysi{"<CR>', { desc = 'Surround inner { with "' })
 -- Select stuff
 set("n", "<leader>y", 'm"ggVGy\'"', { desc = "Yank content of the entire buffer" })
 set("n", "<leader>a", "ggVG", { desc = "Select content of the entire buffer" })
+set("v", "<leader>rr", '"_dP', { desc = "Replace selection with yank register" })
+set("n", "<leader>rw", 'viw"_dP', { desc = "Replace inner word with yank register" })
+set("n", '<leader>r"', 'vi""_dP', { desc = 'Replace inner "" with yank register' })
+set("n", "<leader>r{", 'vi{"_dP', { desc = "Replace inner {} with yank register" })
+set("n", "<leader>r(", 'vi("_dP', { desc = "Replace inner () with yank register" })
+set("n", "<leader>r[", 'vi["_dP', { desc = "Replace inner [] with yank register" })
 
 --Config
 set("n", "<leader>R", ":so %<CR>", { desc = "Reload config" })
