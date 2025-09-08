@@ -1,5 +1,6 @@
 alias v='nvim' #start nvim
-alias lsblk='lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT' #make lsblk more verbose and useful
+alias lsblk='lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT | bat -l conf -p' #make lsblk more verbose and useful
+alias ccat='column -t -s,' #Display csvs properly
 alias w='curl wttr.in' #show weather
 alias ffxiv='cd ~/Developement/FFXIV && ./create.py' #fetch ffxiv stats
 alias asap='cd ~/Developement/asap && ./create.py' #fetch asap stats
