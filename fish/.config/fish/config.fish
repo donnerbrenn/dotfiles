@@ -8,3 +8,8 @@ fish_config theme choose Lava
 oh-my-posh init fish --config ~/.config/oh-my-posh/config.toml | source
 fzf --fish | source
 zoxide init fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/tb/.lmstudio/bin
+# End of LM Studio CLI section
+

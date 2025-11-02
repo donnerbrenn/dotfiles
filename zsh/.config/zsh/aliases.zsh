@@ -32,9 +32,10 @@ alias jcf=' journalctl --no-pager -o short-iso | fzf --ansi --reverse' #search t
 alias :qa='exit' #exit shell, like we are in vim
 alias :qa!='exit' #exit shell, like we are in vim
 alias yaya="yay -Sl | awk '\$1 == \"aur\" { print \$2 \"\t\" \$1 }' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #install packages from AUR
-
+alias sreboot="systemctl soft-reboot" #Softreboot shortcut
 alias yayf="yay -Sl | awk ' \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 } !(\$2 in seen) { seen[\$2] = \$1 } END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] } ' | sort | fzf --multi --with-nth=1 --preview 'yay -Si {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro yay -S" #search packages via yay
 
 alias pacf="pacman -Sl | awk ' \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 } !(\$2 in seen) { seen[\$2] = \$1 } END { for (pkg in seen) printf \"%s\t%s\n\", pkg, seen[pkg] } ' | sort | fzf --multi --with-nth=1 --preview 'pacman -Sii {1}' --preview-window=right:85% | awk '{print \$1}' | xargs -ro sudo pacman -S" #search packages via pacman
 
 alias pacli='pacman -Qq | fzf --preview "echo \"--- Paketinfo ---\" && pacman -Qi {} && echo && echo \"--- Dateien ---\" && pacman -Ql {} | head -40" --preview-window=right:85%' #search through installed packages
+alias update='sudo pacman -Syyu' #update via pacman

@@ -1,4 +1,9 @@
-float getSdfRectangle(in vec2 p, in vec2 xy, in vec2 b) {
+// Shader Contribution by PremModhaOfficial
+// For inquiries or modifications, please reach him
+// GitHub: https://github.com/PremModhaOfficial
+
+float getSdfRectangle(in vec2 p, in vec2 xy, in vec2 b)
+{
     vec2 d = abs(p - xy) - b;
     return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
 }
@@ -35,12 +40,12 @@ float getSdfParallelogram(in vec2 p, in vec2 v0, in vec2 v1, in vec2 v2, in vec2
     return s * sqrt(d);
 }
 
-vec2 normalize(vec2 value, float isPosition) {
+vec2 norm(vec2 value, float isPosition) {
     return (value * 2.0 - (iResolution.xy * isPosition)) / iResolution.y;
 }
 
 float antialising(float distance) {
-    return 1. - smoothstep(0., normalize(vec2(2., 2.), 0.).x, distance);
+    return 1. - smoothstep(0., norm(vec2(2., 2.), 0.).x, distance);
 }
 
 float determineStartVertexFactor(vec2 a, vec2 b) {
@@ -58,24 +63,39 @@ vec2 getRectangleCenter(vec4 rectangle) {
 float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
+vec4 saturate(vec4 color, float factor) {
+    float gray = dot(color, vec4(0.299, 0.587, 0.114, 0.)); // luminance
+    return mix(vec4(gray), color, factor);
+}
 
-const vec4 TRAIL_COLOR = vec4(1., 1., 1., 1.0);
-const float DURATION = 0.3; //IN SECONDS
+vec3 gradientColor(float factor) {
+    /// ADD your custom colors here make sure to chage the numColors variable
+    vec3 colors[3] = vec3[3]( //                           |
+            vec3(1.0, 0.843, 0.0), //                           |
+            vec3(0.216, 1.0, 0.58), //                           |
+            vec3(0.0, 0.663, 1.0) //                           |
+        ); //                                                      |
+    int numColors = 3; // <------------------------------------
+    float segment = 1.0 / float(numColors);
+    int index = int(mod(factor, 1.0) / segment);
+    float localFactor = fract(factor / segment);
+    return mix(colors[index % numColors], colors[(index + 1) % numColors], localFactor);
+}
+
+const float DURATION = 0.25; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-    #if !defined(WEB)
     fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
-    #endif
     // Normalization for fragCoord to a space of -1 to 1;
-    vec2 vu = normalize(fragCoord, 1.);
+    vec2 vu = norm(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
 
     // Normalization for cursor position and size;
     // cursor xy has the postion in a space of -1 to 1;
     // zw has the width and height
-    vec4 currentCursor = vec4(normalize(iCurrentCursor.xy, 1.), normalize(iCurrentCursor.zw, 0.));
-    vec4 previousCursor = vec4(normalize(iPreviousCursor.xy, 1.), normalize(iPreviousCursor.zw, 0.));
+    vec4 currentCursor = vec4(norm(iCurrentCursor.xy, 1.), norm(iCurrentCursor.zw, 0.));
+    vec4 previousCursor = vec4(norm(iPreviousCursor.xy, 1.), norm(iPreviousCursor.zw, 0.));
 
     // When drawing a parellelogram between cursors for the trail i need to determine where to start at the top-left or top-right vertex of the cursor
     float vertexFactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
@@ -98,16 +118,19 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float lineLength = distance(centerCC, centerCP);
 
     vec4 newColor = vec4(fragColor);
-    // Compute fade factor based on distance along the trail
-    float fadeFactor = 1.0 - smoothstep(lineLength, sdfCurrentCursor, easedProgress * lineLength);
 
-    // Apply fading effect to trail color
-    vec4 fadedTrailColor = TRAIL_COLOR * fadeFactor;
+    float gradientFactor = (vu.y + 1.0) * 0.5; // Gradient across vertical position
+    // float timeComponent = sin(iTime) * 0.95 + 0.05; // Oscillates between 0 and 1
+    float timeComponent = sin(iTime); // Oscillates between 0 and 1
+    vec3 trailColorVec3 = gradientColor(gradientFactor * timeComponent);
+    vec4 trail = vec4(trailColorVec3, 0.8); // Set alpha for gradient trail
 
-    // Blend trail with fade effect
-    newColor = mix(newColor, fadedTrailColor, antialising(sdfTrail));
+    trail = saturate(trail, 2.5);
+    // Draw trail
+    newColor = mix(newColor, trail, antialising(sdfTrail));
     // Draw current cursor
-    newColor = mix(newColor, TRAIL_COLOR, antialising(sdfCurrentCursor));
+    newColor = mix(newColor, trail, antialising(sdfCurrentCursor));
     newColor = mix(newColor, fragColor, step(sdfCurrentCursor, 0.));
+    // newColor = mix(fragColor, newColor, OPACITY);
     fragColor = mix(fragColor, newColor, step(sdfCurrentCursor, easedProgress * lineLength));
 }
