@@ -5,6 +5,10 @@ alias w='curl wttr.in' #show weather
 alias ffxiv='cd ~/Developement/FFXIV && ./create.py' #fetch ffxiv stats
 alias asap='cd ~/Developement/asap && ./create.py' #fetch asap stats
 alias y='yay' #call yay
+alias pts='phoronix-test-suite benchmark' #call phoronix-test-suite
+alias ptsl='phoronix-test-suite list-available-tests' #list phoronix-test-suite tests
+alias ptsf='phoronix-test-suite list-available-tests | grep' #find phoronix-test-suite tests
+alias pts1='FORCE_TIMES_TO_RUN=1 phoronix-test-suite benchmark' #call phoronix-test-suite with a single run
 alias ga='git add' #git add
 alias gc='git commit -m' #git commit -m
 alias gf='git pull' #git pull

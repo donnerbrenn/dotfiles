@@ -19,6 +19,14 @@ ensure_pkg_installed() {
     fi
 }
 
+function pts-fzf() {
+    local selected=$(phoronix-test-suite list-available-tests | fzf --height 100% --border --prompt="PTS> ")
+    if [[ -n "$selected" ]]; then
+        local test_slug=$(echo $selected | awk '{print $1}')
+        FORCE_TIMES_TO_RUN=1 phoronix-test-suite benchmark "$test_slug"
+    fi
+}
+
 # Funktion zum Neuladen der .zshrc
 reload_zshrc() {
     source ~/.zshrc
