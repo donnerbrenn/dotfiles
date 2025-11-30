@@ -1,0 +1,121 @@
+{
+    // Comments are allowed.
+    "fields": [
+        {
+            "title": "Time", // Max length is 32.
+            // Kind affects rendering. There are:
+            // * time;
+            // * numerictime;
+            // * secondtime;
+            // * millitime;
+            // * microtime;
+            // * level;
+            // * message;
+            // * any.
+            "kind": "numerictime",
+            "ref": [
+                // The application will display the first matched value.
+                "$.timestamp",
+                "$.time",
+                "$.t",
+                "$.ts",
+                "$[\"@timestamp\"]"
+            ],
+            "width": 20,
+            //	Year: "2006" "06"
+            //	Month: "Jan" "January" "01" "1"
+            //	Day of the week: "Mon" "Monday"
+            //	Day of the month: "2" "_2" "02"
+            //	Day of the year: "__2" "002"
+            //	Hour: "15" "3" "03" (PM or AM)
+            //	Minute: "4" "04"
+            //	Second: "5" "05"
+            //	AM/PM mark: "PM"
+            //
+            // More details: https://go.dev/src/time/format.go.
+            "timeFormat": "2006-01-02T15:04:05Z07:00"
+        },
+
+        {
+            "title": "Name",
+            "kind": "name",
+            "ref": [
+                "$.name"
+            ],
+            "width": 20
+
+        },
+        {
+            "title": "Level",
+            "kind": "level",
+            "ref": [
+                "$.level",
+                "$.lvl",
+                "$.l"
+            ],
+            "width": 10
+        },
+        {
+            "title": "Message",
+            "kind": "message",
+            "ref": [
+                "$.message",
+                "$.msg",
+                "$.error",
+                "$.err"
+            ],
+            "width": 0 // The width will be calculated automatically.
+        }
+    ],
+    // Show logs in reverse order by default.
+    "isReverseDefault": true,
+    // Time layouts to reformat.
+    //
+    // If the time field has been parsed to any of the specified layouts,
+    // it will be formatted according to "timeFormat" configuration.
+    //
+    // See: https://pkg.go.dev/time#pkg-constants.
+    "timeLayouts": [
+	    "01/02 03:04:05PM '06 -0700",
+	    "Mon Jan _2 15:04:05 2006",
+	    "Mon Jan _2 15:04:05 MST 2006",
+	    "Mon Jan 02 15:04:05 -0700 2006",
+	    "02 Jan 06 15:04 MST",
+	    "02 Jan 06 15:04 -0700",
+	    "Monday, 02-Jan-06 15:04:05 MST",
+	    "Mon, 02 Jan 2006 15:04:05 MST",
+	    "Mon, 02 Jan 2006 15:04:05 -0700",
+	    "2006-01-02T15:04:05Z07:00",
+	    "2006-01-02T15:04:05.999999999Z07:00",
+	    "Jan _2 15:04:05",
+	    "Jan _2 15:04:05.000",
+	    "Jan _2 15:04:05.000000",
+	    "Jan _2 15:04:05.000000000",
+	    "2006-01-02 15:04:05",
+	    "2006-01-02"
+	],
+    // Mapping of log level.
+    // Possible values: none, trace, debug, info, warn, error, panic, fatal.
+    "customLevelMapping": {
+        // Replace "10" to "trace" in log level.
+        "10": "trace",
+        "20": "debug",
+        "30": "info",
+        "40": "warn",
+        "50": "error",
+        "60": "fatal"
+    },
+    // The maximum size of the file in bytes.
+    // The rest of the file will be ignored.
+    //
+    // It accepts the number of bytes:
+    //
+    //   "maxFileSizeBytes": 1073741824
+    //
+    // Or a text value with a unit:
+    //
+    //   "maxFileSizeBytes": "1000k"
+    //   "maxFileSizeBytes": "1.5m"
+    //   "maxFileSizeBytes": "1g"
+    "maxFileSizeBytes": "2g"
+}

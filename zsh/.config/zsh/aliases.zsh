@@ -43,3 +43,4 @@ alias pacf="pacman -Sl | awk ' \$1 == \"cachyos-znver4\" { seen[\$2] = \$1 } !(\
 
 alias pacli='pacman -Qq | fzf --preview "echo \"--- Paketinfo ---\" && pacman -Qi {} && echo && echo \"--- Dateien ---\" && pacman -Ql {} | head -40" --preview-window=right:85%' #search through installed packages
 alias update='sudo pacman -Syyu' #update via pacman
+alias sshfs='sshfs -o reconnect -o compression=no -o Cipher=chacha20-poly1305@openssh.com -o cache=yes -o kernel_cache -o ServerAliveInterval=15 -o ServerAliveCountMax=3' #more performance for sshfs

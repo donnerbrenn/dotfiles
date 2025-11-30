@@ -1,0 +1,60 @@
+    OpenRGB v0.9+ (1.0rc2)
+    Commit:  from 
+    Launched: 20251117_220633
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: default.orp attempting to validate header
+0     |Info:    [ProfileManager] Valid v4 profile found for default
+52    |Info:    [ResourceManager] Initializing HID interfaces: Success
+52    |Info:    ------------------------------------------------------
+52    |Info:    |               Start device detection               |
+52    |Info:    ------------------------------------------------------
+63    |Info:    ------------------------------------------------------
+63    |Info:    |             Detecting I2C interfaces               |
+63    |Info:    ------------------------------------------------------
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-3 Device 1002:7550 Subsystem: 1EAE:8811
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-10 Device 1002:164E Subsystem: 1043:8877
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-1 Device 1002:7550 Subsystem: 1EAE:8811
+63    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-15 Device 1022:790B Subsystem: 1043:8877
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-6 Device 1002:7550 Subsystem: 1EAE:8811
+63    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-13 Device 1022:790B Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-4 Device 1002:7550 Subsystem: 1EAE:8811
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-11 Device 1002:164E Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-2 Device 1002:7550 Subsystem: 1EAE:8811
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-7 Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-14 Device 1022:790B Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-5 Device 1002:7550 Subsystem: 1EAE:8811
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-12 Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    ------------------------------------------------------
+64    |Info:    |               Detecting I2C devices                |
+64    |Info:    ------------------------------------------------------
+1088  |Info:    ------------------------------------------------------
+1088  |Info:    |            Detecting I2C DIMM modules              |
+1088  |Info:    ------------------------------------------------------
+1827  |Info:    [ResourceManager] Detected occupied slot 2, bus 6, type DDR5
+2521  |Info:    [ResourceManager] Detected occupied slot 4, bus 6, type DDR5
+2588  |Info:    ------------------------------------------------------
+2588  |Info:    |               Detecting I2C PCI devices            |
+2588  |Info:    ------------------------------------------------------
+2589  |Info:    ------------------------------------------------------
+2589  |Info:    |               Detecting HID devices                |
+2589  |Info:    ------------------------------------------------------
+2662  |Info:    [ASUS TUF GAMING B650-PLUS WIFI] Registering RGB controller
+2674  |Info:    [Glorious Model O / O-] Registering RGB controller
+2674  |Info:    ------------------------------------------------------
+2674  |Info:    |            Detecting libusb HID devices            |
+2674  |Info:    ------------------------------------------------------
+2752  |Info:    ------------------------------------------------------
+2752  |Info:    |              Detecting other devices               |
+2752  |Info:    ------------------------------------------------------
+2769  |Info:    [ResourceManager] Calling Post-detection callbacks
+2769  |Info:    ------------------------------------------------------
+2769  |Info:    |                Detection completed                 |
+2769  |Info:    ------------------------------------------------------
