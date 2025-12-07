@@ -1,0 +1,33 @@
+(
+        name: "Queue",
+        pane: Split(
+            // **HAUPTAUFTEILUNG:** Vertikal (oben/unten)
+            direction: Vertical,
+            panes: [
+                (
+                    // Oben: Der Queue-Inhalt über die volle Breite (ca. 70% der Höhe)
+                    size: "70%",
+                    pane: Pane(Queue)
+                ),
+                (
+                    // Unten: Die AlbumArt und Cava (ca. 30% der Höhe)
+                    size: "30%",
+                    pane: Split(
+                        // **UNTERTEILUNG:** Horizontal (links/rechts)
+                        direction: Horizontal,
+                        panes: [
+                            (
+                                // Unten Links: AlbumArt (nimmt 30% der Breite des unteren Bereichs)
+                                size: "30%",
+                                pane: Pane(AlbumArt)
+                            ),
+                            (
+                                // Unten Rechts: Cava (nimmt 70% der Breite des unteren Bereichs)
+                                size: "70%",
+                                pane: Pane(Cava)
+                            ),
+                        ],
+                    )
+                ),
+            ],
+        ),

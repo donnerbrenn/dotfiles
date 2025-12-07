@@ -18,4 +18,4 @@ pkgs=(
 )
 
 
-ensure_pkg_installed "${pkgs[@]}"
+# ensure_pkg_installed "${pkgs[@]}"

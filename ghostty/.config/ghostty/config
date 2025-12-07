@@ -1,5 +1,5 @@
 keybind = ctrl+shift+r=reload_config
-background = #0d0d0d
+background = #0d0d17
 font-family = RobotoMono Nerd Font
 font-size = 16
 cursor-style = block
