@@ -4,7 +4,8 @@ return {
 	config = function()
 		require("toggleterm").setup({
 			size = 15,
-			open_mapping = [[<leader>t]],
+			-- HIER IST DIE ÄNDERUNG:
+			open_mapping = [[<C-t>]], -- Statt <leader>t lieber Strg+t
 			hide_numbers = true,
 			shade_terminals = true,
 			shading_factor = 1,
@@ -12,15 +13,14 @@ return {
 			insert_mappings = true,
 			terminal_mappings = true,
 			persist_size = true,
-			direction = "horizontal", -- kannst auch 'vertical' oder 'float' wählen
+			direction = "horizontal",
 			close_on_exit = true,
 			shell = vim.o.shell,
 		})
 
-		-- ESC zum Verlassen des Terminalmodus
-		vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
-
-		-- Fensterwechsel (auch im Terminal-Modus!)
+		-- ... deine restlichen Mappings ...
+		-- (Die sind gut so, lassen wir unverändert)
+		-- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 		vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-w>h]], { noremap = true, silent = true })
 		vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-w>j]], { noremap = true, silent = true })
 		vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-w>k]], { noremap = true, silent = true })
