@@ -16,3 +16,16 @@ compinit
 
 zinit load Aloxaf/fzf-tab
 zinit load zsh-users/zsh-syntax-highlighting
+export FZF_COMPLETION_OPTS='--height 80% --layout=reverse --border'
+export FZF_COMPLETION_TRIGGER='**'
+_fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+        cd)           fzf --preview 'eza --tree --color=always --icons {} | head -200'   "$@" ;;
+        export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+        ssh)          fzf --preview 'dig {}'                   "$@" ;;
+        *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+    esac
+}
