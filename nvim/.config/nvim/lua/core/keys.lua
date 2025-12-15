@@ -1,5 +1,5 @@
-vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.mapleader = " "
 local set = vim.keymap.set
 
 -- === BASICS & SELECTION ===
@@ -18,11 +18,11 @@ set("n", "<S-l>", "<cmd>bn<CR>", { desc = "Next Buffer" })
 
 -- === WINDOWS ===
 -- Navigation
-set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
 
+set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 -- Management
 set("n", "<leader>wd", "<C-w>q", { desc = "Close Window" }) -- Falls du nur das Fenster, nicht den Buffer schließen willst
 set("n", "<leader>wv", "<C-w>v", { desc = "Split Vertical" })
@@ -48,6 +48,15 @@ set("i", "<M-j>", "<Esc><cmd>m .+1<CR>==gi", { desc = "Move Line Down" })
 set("i", "<M-k>", "<Esc><cmd>m .-2<CR>==gi", { desc = "Move Line Up" })
 set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move Selection Down" })
 set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up" })
+-- Indentation (Alt + h/l)
+set("n", "<M-h>", "<<", { desc = "Indent Left" })
+set("n", "<M-l>", ">>", { desc = "Indent Right" })
+-- Im Insert Mode nutzen wir Ctrl-D (links) und Ctrl-T (rechts)
+set("i", "<M-h>", "<C-d>", { desc = "Indent Left" })
+set("i", "<M-l>", "<C-t>", { desc = "Indent Right" })
+-- Wichtig: 'gv' behält die Markierung bei, damit man mehrfach drücken kann
+set("v", "<M-h>", "<gv", { desc = "Indent Selection Left" })
+set("v", "<M-l>", ">gv", { desc = "Indent Selection Right" })
 
 -- === SORTING ===
 set("v", "<leader>ss", ":sort<CR>", { desc = "Sort Lines" })
