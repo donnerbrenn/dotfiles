@@ -48,6 +48,7 @@ set("i", "<M-j>", "<Esc><cmd>m .+1<CR>==gi", { desc = "Move Line Down" })
 set("i", "<M-k>", "<Esc><cmd>m .-2<CR>==gi", { desc = "Move Line Up" })
 set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move Selection Down" })
 set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up" })
+
 -- Indentation (Alt + h/l)
 set("n", "<M-h>", "<<", { desc = "Indent Left" })
 set("n", "<M-l>", ">>", { desc = "Indent Right" })
@@ -67,10 +68,16 @@ set("n", "<leader>s", "vip:sort<CR>", { desc = "Sort Paragraph" })
 set("n", "<leader>R", "<cmd>so %<CR>", { desc = "Reload Config" })
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
 set("n", "<leader>123", 'ysi{"', { desc = "Surround with Quote" })
-
+set("n", "<leader>mu", "<cmd>MasonUpdate<cr>", { desc = "Update Mason Packages" })
 -- Hardcore Mode
 local msg = [[<cmd>echo "Use hjkl!"<CR>]]
 set({ "n", "i", "v" }, "<Left>", msg, { desc = "Don't touch!" })
 set({ "n", "i", "v" }, "<Right>", msg, { desc = "Don't touch!" })
 set({ "n", "i", "v" }, "<Up>", msg, { desc = "Don't touch!" })
 set({ "n", "i", "v" }, "<Down>", msg, { desc = "Don't touch!" })
+
+-- === DIAGNOSTICS ===
+set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostic Error" })
+set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+set("n", "<leader>0", vim.diagnostic.setloclist, { desc = "Open quickfix list" })

@@ -1,6 +1,5 @@
 local set = vim.keymap.set
 return {
-	set("n", "<leader>q", ":q<CR>", { desc = "TEST" }),
 	-- -- Mason
 	set("n", "<leader>mm", "<cmd>Mason<CR>", { desc = "Mason " }),
 	set("n", "<leader>mu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" }),
