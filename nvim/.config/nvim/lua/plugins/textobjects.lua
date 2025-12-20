@@ -50,11 +50,11 @@ return {
 					enable = true,
 					swap_next = {
 						["<C-j>"] = { query = "@function.outer", desc = "Swap with next function" },
-						["<C-l>"] = { query = "@parameter.inner", desc = "Swap with next parameter" },
+						-- ["<C-l>"] = { query = "@parameter.inner", desc = "Swap with next parameter" },
 					},
 					swap_previous = {
 						["<C-k>"] = { query = "@function.outer", desc = "Swap with previous function" },
-						["<C-h>"] = { query = "@parameter.inner", desc = "Swap with previous parameter" },
+						-- ["<C-h>"] = { query = "@parameter.inner", desc = "Swap with previous parameter" },
 					},
 				},
 			},

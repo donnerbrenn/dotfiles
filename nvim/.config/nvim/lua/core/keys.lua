@@ -5,28 +5,24 @@ local set = vim.keymap.set
 -- === BASICS & SELECTION ===
 set("n", "<leader>a", "ggVG", { desc = "Select All" })
 set("n", "<leader>y", "mzggVGy`z", { desc = "Yank All" })
-set("x", "<leader>p", [["_dP]], { desc = "Paste (Keep Register)" }) -- Das "Black Hole" Paste
+set("x", "<leader>p", [["_dP]], { desc = "Paste (Keep Register)" })
 
 -- === INSERTING ===
 set("n", "<leader>o", "o<ESC>", { desc = "Insert Line Below" })
 set("n", "<leader>O", "O<ESC>", { desc = "Insert Line Above" })
 
 -- === BUFFERS ===
-set("n", "<leader>q", "<cmd>bd<CR>", { desc = "Close Buffer" })
+set("n", "<leader>qb", "<cmd>bd<CR>", { desc = "Quit Buffer" })
 set("n", "<S-h>", "<cmd>bp<CR>", { desc = "Prev Buffer" })
 set("n", "<S-l>", "<cmd>bn<CR>", { desc = "Next Buffer" })
 
 -- === WINDOWS ===
+set("n", "<leader>qw", "<C-w>q", { desc = "Quit window" })
 -- Navigation
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
 set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
--- Management
-set("n", "<leader>wd", "<C-w>q", { desc = "Close Window" })
-set("n", "<leader>wv", "<C-w>v", { desc = "Split Vertical" })
-set("n", "<leader>wh", "<C-w>s", { desc = "Split Horizontal" })
-set("n", "<leader>we", "<C-w>w", { desc = "Equalize Sizes" })
 
 -- Resizing (Pfeile erlaubt hier)
 set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Resize Height +" })
@@ -63,8 +59,7 @@ set("n", "<leader>s", "vip:sort<CR>", { desc = "Sort Paragraph" })
 
 -- === MISC ===
 set("n", "<leader>R", "<cmd>so %<CR>", { desc = "Reload Config" })
-set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
-set("n", "<leader>mu", "<cmd>MasonUpdate<cr>", { desc = "Update Mason Packages" })
+set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { desc = "Clear Highlight and Escape" })
 -- Hardcore Mode
 local msg = [[<cmd>echo "Use hjkl!"<CR>]]
 set({ "n", "i", "v" }, "<Left>", msg, { desc = "Don't touch!" })
@@ -83,12 +78,26 @@ set("n", "]d", function()
 end, { desc = "Next Diagnostic" })
 
 -- === MASON ===
-set("n", "<leader>mm", "<cmd>Mason<CR>", { desc = "Mason " })
+set("n", "<leader>pm", "<cmd>Mason<CR>", { desc = "Mason " })
 set("n", "<leader>mu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" })
 --
 -- === LAZY ===
-set("n", "<leader>ll", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
-set("n", "<leader>lu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
+set("n", "<leader>pl", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
+set("n", "<leader>pu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
 
 -- === OUTLINE ===
-set("n", "<leader>-", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+set("n", "<leader>to", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+-- === NVIM TREE ===
+set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle find file" })
+set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+
+-- === FLASH ===
+set({ "n", "x", "o" }, "<leader>g", function()
+	require("flash").jump()
+end, { desc = "Flash" })
+set({ "n", "x", "o" }, "<leader>G", function()
+	require("flash").treesitter()
+end, { desc = "Flash Treesitter" })

@@ -5,13 +5,12 @@ return { -- Useful plugin to show you pending keybinds.
 		require("which-key").setup()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>c", desc = "[C]ode" },
-			{ "<leader>d", desc = "[D]ocument" },
-			{ "<leader>r", desc = "[R]ename" },
+			{ "<leader>s", desc = "[D]ebugger" },
+			-- { "<leader>l", desc = "[L]sp" },
+			{ "<leader>q", desc = "[Q]uit" },
 			{ "<leader>s", desc = "[S]earch" },
-			{ "<leader>w", desc = "[W]workspace" },
+			{ "<leader>p", desc = "[P]ackages" },
 			{ "<leader>t", desc = "[T]oggle" },
-			{ "<leader>h", desc = "Git [H]unk" },
 		})
 
 		-- Document existing key chains
