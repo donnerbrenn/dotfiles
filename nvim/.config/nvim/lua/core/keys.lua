@@ -21,13 +21,12 @@ set("n", "<S-l>", "<cmd>bn<CR>", { desc = "Next Buffer" })
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
-
 set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 -- Management
-set("n", "<leader>wd", "<C-w>q", { desc = "Close Window" }) -- Falls du nur das Fenster, nicht den Buffer schließen willst
+set("n", "<leader>wd", "<C-w>q", { desc = "Close Window" })
 set("n", "<leader>wv", "<C-w>v", { desc = "Split Vertical" })
 set("n", "<leader>wh", "<C-w>s", { desc = "Split Horizontal" })
-set("n", "<leader>we", "<C-w>=", { desc = "Equalize Sizes" })
+set("n", "<leader>we", "<C-w>w", { desc = "Equalize Sizes" })
 
 -- Resizing (Pfeile erlaubt hier)
 set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Resize Height +" })
@@ -52,10 +51,8 @@ set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up" })
 -- Indentation (Alt + h/l)
 set("n", "<M-h>", "<<", { desc = "Indent Left" })
 set("n", "<M-l>", ">>", { desc = "Indent Right" })
--- Im Insert Mode nutzen wir Ctrl-D (links) und Ctrl-T (rechts)
 set("i", "<M-h>", "<C-d>", { desc = "Indent Left" })
 set("i", "<M-l>", "<C-t>", { desc = "Indent Right" })
--- Wichtig: 'gv' behält die Markierung bei, damit man mehrfach drücken kann
 set("v", "<M-h>", "<gv", { desc = "Indent Selection Left" })
 set("v", "<M-l>", ">gv", { desc = "Indent Selection Right" })
 
@@ -67,7 +64,6 @@ set("n", "<leader>s", "vip:sort<CR>", { desc = "Sort Paragraph" })
 -- === MISC ===
 set("n", "<leader>R", "<cmd>so %<CR>", { desc = "Reload Config" })
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
-set("n", "<leader>123", 'ysi{"', { desc = "Surround with Quote" })
 set("n", "<leader>mu", "<cmd>MasonUpdate<cr>", { desc = "Update Mason Packages" })
 -- Hardcore Mode
 local msg = [[<cmd>echo "Use hjkl!"<CR>]]
@@ -78,6 +74,21 @@ set({ "n", "i", "v" }, "<Down>", msg, { desc = "Don't touch!" })
 
 -- === DIAGNOSTICS ===
 set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostic Error" })
-set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
-set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 set("n", "<leader>0", vim.diagnostic.setloclist, { desc = "Open quickfix list" })
+set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Prev Diagnostic" })
+set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Next Diagnostic" })
+
+-- === MASON ===
+set("n", "<leader>mm", "<cmd>Mason<CR>", { desc = "Mason " })
+set("n", "<leader>mu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" })
+--
+-- === LAZY ===
+set("n", "<leader>ll", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
+set("n", "<leader>lu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
+
+-- === OUTLINE ===
+set("n", "<leader>-", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
