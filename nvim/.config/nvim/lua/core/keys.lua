@@ -8,63 +8,65 @@ set("n", "<leader>y", "mzggVGy`z", { desc = "Yank All" })
 set("x", "<leader>p", [["_dP]], { desc = "Paste (Keep Register)" })
 
 -- === INSERTING ===
-set("n", "<leader>o", "o<ESC>", { desc = "Insert Line Below" })
 set("n", "<leader>O", "O<ESC>", { desc = "Insert Line Above" })
+set("n", "<leader>o", "o<ESC>", { desc = "Insert Line Below" })
 
 -- === BUFFERS ===
-set("n", "<leader>bc", "<cmd>bd<CR>", { desc = "Close buffer" })
-set("n", "<leader>bw", "<cmd>w<CR>", { desc = "Write buffer" })
 set("n", "<S-h>", "<cmd>bp<CR>", { desc = "Prev buffer" })
 set("n", "<S-l>", "<cmd>bn<CR>", { desc = "Next buffer" })
+set("n", "<leader>bc", "<cmd>bd<CR>", { desc = "Close buffer" })
+set("n", "<leader>bw", "<cmd>w<CR>", { desc = "Write buffer" })
 
 -- === WINDOWS ===
 set("n", "<leader>wc", "<C-w>q", { desc = "Close window" })
-set("n", "<leader>wm", ":resize | vertical resize<CR>", { desc = "Maximize window" })
 set("n", "<leader>we", "<C-w>=", { desc = "Equal windows" })
-set("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 set("n", "<leader>wh", "<C-w>s", { desc = "Horizontal split" })
+set("n", "<leader>wm", ":resize | vertical resize<CR>", { desc = "Maximize window" })
+set("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
+
 -- Navigation
+set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
-set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 
 -- Resizing (Arrows allowed here)
-set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Resize Height +" })
 set("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Resize Height -" })
 set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Resize Width -" })
 set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Resize Width +" })
+set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Resize Height +" })
 
 -- === MOVING & SCROLLING ===
 set("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
 set("n", "<C-u>", "<C-u>zz", { desc = "Scroll Up" })
-set("n", "n", "nzzzv", { desc = "Next Result" })
 set("n", "N", "Nzzzv", { desc = "Prev Result" })
+set("n", "n", "nzzzv", { desc = "Next Result" })
 
 -- Move Lines (Alt + j/k)
-set("n", "<M-j>", "<cmd>m .+1<CR>==", { desc = "Move Line Down" })
-set("n", "<M-k>", "<cmd>m .-2<CR>==", { desc = "Move Line Up" })
 set("i", "<M-j>", "<Esc><cmd>m .+1<CR>==gi", { desc = "Move Line Down" })
 set("i", "<M-k>", "<Esc><cmd>m .-2<CR>==gi", { desc = "Move Line Up" })
+set("n", "<M-j>", "<cmd>m .+1<CR>==", { desc = "Move Line Down" })
+set("n", "<M-k>", "<cmd>m .-2<CR>==", { desc = "Move Line Up" })
 set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move Selection Down" })
 set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up" })
 
 -- Indentation (Alt + h/l)
-set("n", "<M-h>", "<<", { desc = "Indent Left" })
-set("n", "<M-l>", ">>", { desc = "Indent Right" })
 set("i", "<M-h>", "<C-d>", { desc = "Indent Left" })
 set("i", "<M-l>", "<C-t>", { desc = "Indent Right" })
+set("n", "<M-h>", "<<", { desc = "Indent Left" })
+set("n", "<M-l>", ">>", { desc = "Indent Right" })
 set("v", "<M-h>", "<gv", { desc = "Indent Selection Left" })
 set("v", "<M-l>", ">gv", { desc = "Indent Selection Right" })
 
 -- === SORTING ===
+set("n", "<leader>cc", "vip:sort<CR>", { desc = "Sort Paragraph" })
 set("v", "<leader>cs", ":sort<CR>", { desc = "Sort Lines" })
 set("v", "<leader>cu", ":sort u<CR>", { desc = "Sort Unique" })
-set("n", "<leader>cc", "vip:sort<CR>", { desc = "Sort Paragraph" })
 
 -- === MISC ===
 set("n", "<leader>R", "<cmd>so %<CR>", { desc = "Reload Config" })
 set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { desc = "Clear Highlight and Escape" })
+
 -- Hardcore Mode
 local msg = [[<cmd>echo "Use hjkl!"<CR>]]
 set({ "n", "i", "v" }, "<Left>", msg, { desc = "Don't touch!" })
@@ -102,15 +104,9 @@ set({ "n", "x", "o" }, "<leader>j", function()
 end, { desc = "Flash" })
 
 -- -- === TREESJ ===
-vim.keymap.set("n", "<leader>cm", function()
+vim.keymap.set("n", "<leader>cj", function()
 	require("treesj").toggle()
 end, { desc = "Code: Toggle Split/Join" })
-vim.keymap.set("n", "<leader>cs", function()
-	require("treesj").split()
-end, { desc = "Code: Split Block" })
-vim.keymap.set("n", "<leader>cj", function()
-	require("treesj").join()
-end, { desc = "Code: Join Block" })
 
 -- === DADBOD ===
 -- set("n", "<leader>tu", "<cmd>DBUIToggle<cr>", { desc = "Toggle DB UI" })
