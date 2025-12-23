@@ -95,7 +95,6 @@ set("n", "<leader>to", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
 -- === NVIM TREE ===
 set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-set("n", "<leader>tf", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle find file" })
 
 -- === FLASH ===
 set({ "n", "x", "o" }, "<leader>j", function()
@@ -113,6 +112,9 @@ vim.keymap.set("n", "<leader>cj", function()
 	require("treesj").join()
 end, { desc = "Code: Join Block" })
 
+-- === DADBOD ===
+-- set("n", "<leader>tu", "<cmd>DBUIToggle<cr>", { desc = "Toggle DB UI" })
+--
 -- === LSP ===
 local M = {}
 -- Die Funktion für deine LSP-Bindings
