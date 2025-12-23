@@ -83,12 +83,12 @@ set("n", "dj", function()
 end, { desc = "Next Diagnostic" })
 
 -- === MASON ===
-set("n", "<leader>pm", "<cmd>Mason<CR>", { desc = "Mason " })
+set("n", "<leader>pmm", "<cmd>Mason<CR>", { desc = "Mason " })
 set("n", "<leader>pmu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" })
 --
 -- === LAZY ===
-set("n", "<leader>pl", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
-set("n", "<leader>pu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
+set("n", "<leader>pll", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
+set("n", "<leader>plu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
 
 -- === OUTLINE ===
 set("n", "<leader>to", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
@@ -96,16 +96,11 @@ set("n", "<leader>to", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 -- === NVIM TREE ===
 set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 set("n", "<leader>tf", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle find file" })
--- set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
--- set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 
 -- === FLASH ===
-set({ "n", "x", "o" }, "<leader>jf", function()
+set({ "n", "x", "o" }, "<leader>j", function()
 	require("flash").jump()
 end, { desc = "Flash" })
-set({ "n", "x", "o" }, "<leader>jF", function()
-	require("flash").treesitter()
-end, { desc = "Flash Treesitter" })
 
 -- -- === TREESJ ===
 vim.keymap.set("n", "<leader>cm", function()
@@ -122,7 +117,6 @@ end, { desc = "Code: Join Block" })
 local M = {}
 -- Die Funktion für deine LSP-Bindings
 M.set_lsp_keys = function(event)
-	-- Telescope LSP Funktionen
 	set(
 		"n",
 		"<leader>ld",

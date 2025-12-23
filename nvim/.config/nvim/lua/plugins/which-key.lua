@@ -19,22 +19,22 @@ return {
 	config = function(_, opts)
 		local wk = require("which-key")
 		wk.setup(opts)
-
+		vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = "#3a475e", fg = "#eeffff" })
 		vim.api.nvim_set_hl(0, "WhichKey", { fg = "#c3e88d", bold = true, underline = false })
 		vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = "#82aaff", bold = true, underline = false })
 		vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = "#eeffff", underline = false })
-		-- vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = "#37474f" })
+		vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = "#c3e88d", bg = "#3a475e" })
 
 		wk.add({
 			-- Gruppen (Wir nutzen 'group' statt 'desc', wo es Sinn ergibt)
 			{ "<leader>c", group = "[C]ode", icon = "" },
 			{ "<leader>s", group = "[S]earch", icon = "" },
 			{ "<leader>p", group = "[P]ackages", icon = "" },
-			{ "<leader>t", group = "[T]oggle", icon = "󰏔" },
+			{ "<leader>t", group = "[T]oggle", icon = "󰔢" },
 			{ "<leader>w", group = "[W]indow", icon = "" },
 			{ "<leader>b", group = "[B]uffer", icon = "" },
-			{ "<leader>l", group = "[L]SP", icon = "" },
-			{ "<leader>d", group = "[D]iagnostics", icon = "" },
+			{ "<leader>l", group = "[L]SP", icon = "" },
+			{ "<leader>d", group = "[D]iagnostics", icon = "" },
 			{ "<leader>j", group = "[J]ump", icon = "󱋿" },
 
 			-- Einzelne Keys (Icons ohne nervige Klammern)

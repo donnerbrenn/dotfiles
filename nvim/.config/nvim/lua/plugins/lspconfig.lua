@@ -8,7 +8,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
-		"hrsh7th/cmp-nvim-lsp", -- Erforderlich für die Capabilities
+		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		-- 1. Keybindings via Autocommand laden
@@ -42,26 +42,57 @@ return {
 
 		-- 3. Server definieren
 		local servers = {
+			jq = {},
+			debugpy = {},
 			clangd = {
 				cmd = {
 					"clangd",
 					"--background-index",
-					"--clang-tidy", -- DAS hier aktiviert die "Ruff-ähnlichen" Code Actions!
-					"--header-insertion=iwyu", -- "Include what you use"
+					"--clang-tidy",
+					"--header-insertion=iwyu",
 					"--completion-style=detailed",
 					"--function-arg-placeholders",
+					"--fallback-style=llvm",
 				},
 				init_options = {
-					fallbackFlags = { "-std=c11" }, -- Oder c17 / c++20
+					fallbackFlags = { "-std=c11" },
 				},
 			},
 			glsl_analyzer = {},
-			pyright = {},
-			rust_analyzer = {},
+			pyright = {
+				settings = {
+					pyright = {
+						-- Nutzt Ruff für Import-Organisation
+						disableOrganizeImports = true,
+					},
+					python = {
+						analysis = {
+							-- "ignore" lässt Ruff das Linting übernehmen,
+							-- Pyright bleibt für Type-Checking zuständig
+							typeCheckingMode = "basic",
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "workspace",
+						},
+					},
+				},
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },
+						diagnostics = {
+							globals = { "vim" }, -- Verhindert Warnungen bei der Neovim-API
+						},
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME,
+								-- Damit erkennt der LSP auch Plugins in deinem Config-Ordner
+								"${3rd}/luv/library",
+							},
+						},
+						telemetry = { enable = false },
 					},
 				},
 			},
@@ -76,9 +107,18 @@ return {
 		-- 4. Mason Setup & Automatisches Server-Setup
 		require("mason").setup()
 		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, { "stylua" })
+		vim.list_extend(ensure_installed, {
+			"stylua",
+			"prettierd",
+			"clang-format",
+			"beautysh",
+			"sqlfmt",
+			"jq",
+			"debugpy",
+			"codelldb",
+			"bash-debug-adapter",
+		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)

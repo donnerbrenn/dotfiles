@@ -18,16 +18,16 @@ return {
 						"diagnostics",
 						sources = { "nvim_diagnostic" },
 						symbols = {
-							error = "󰅚 ", -- High-Res Close Circle (Material)
-							warn = "󰀪 ", -- Alert Triangle (Material)
-							info = "󰋽 ", -- Info Circle (Material)
-							hint = "󰌶 ", -- Lightbulb (Material)
+							error = "󰅚 ",
+							warn = "󰀪 ",
+							info = "󰋽 ",
+							hint = "󰌶 ",
 						},
 						diagnostics_color = {
-							error = { fg = "#ff5370" }, -- Material Red
-							warn = { fg = "#ffcb6b" }, -- Material Yellow
-							info = { fg = "#82aaff" }, -- Material Blue
-							hint = { fg = "#c3e88d" }, -- Material Green
+							error = { fg = "#dd5370" },
+							warn = { fg = "#ffcb6b" },
+							info = { fg = "#82aaff" },
+							hint = { fg = "#c3e88d" },
 						},
 						colored = true,
 						update_in_insert = false,

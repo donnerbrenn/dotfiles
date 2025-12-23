@@ -1,29 +1,29 @@
 -- ~/.config/nvim/lua/config/diagnostics.lua
 
--- 1. Icons für die Seitenleiste (Sign Column) definieren
--- Falls du Nerd Fonts nutzt, sehen diese Icons super aus.
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- 1. Icons für die Diagnose-Level (wie gehabt)
+local signs = {
+	[vim.diagnostic.severity.ERROR] = " ",
+	[vim.diagnostic.severity.WARN] = " ",
+	[vim.diagnostic.severity.HINT] = " ",
+	[vim.diagnostic.severity.INFO] = " ",
+}
 
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- 2. Die eigentliche Diagnose-Konfiguration
+-- 2. Die Diagnose-Konfiguration
 vim.diagnostic.config({
+	signs = {
+		text = signs,
+	},
 	virtual_text = {
-		source = "if_many", -- Zeigt Quelle nur an, wenn es mehrere LSPs gibt
-		prefix = "●", -- Kleiner Punkt statt '■'
-		-- Alternativ: prefix = '◄',
+		source = "if_many",
+		prefix = "●",
 	},
 	float = {
-		source = "always",
+		source = true,
 		border = "rounded",
 		header = "",
 		prefix = "",
 	},
-	signs = true, -- Aktiviert die Icons von oben
-	underline = true, -- Unterstreicht Fehler im Code
-	update_in_insert = false, -- Weniger flackern beim Tippen
-	severity_sort = true, -- Wichtigste Fehler zuerst
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
 })
