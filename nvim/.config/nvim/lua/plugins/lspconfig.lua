@@ -1,24 +1,19 @@
--- lua/plugins/lsp.lua
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- Modernes Lua-Setup für Neovim Configs (Ersatz für neodev)
 		{ "folke/lazydev.nvim", ft = "lua", opts = {} },
 		{ "williamboman/mason.nvim", config = true },
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "williamboman/mason-lspconfig.nvim" },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 		{ "j-hui/fidget.nvim", opts = {} },
-		"hrsh7th/cmp-nvim-lsp",
+		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 	config = function()
-		-- 1. Keybindings via Autocommand laden
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
-				-- Hier rufen wir deine Keys auf!
 				require("core.keys").set_lsp_keys(event)
 
-				-- Highlighting Logik (Bleibt hier, da es kein Keybinding ist)
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.server_capabilities.documentHighlightProvider then
 					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -36,11 +31,9 @@ return {
 			end,
 		})
 
-		-- 2. Capabilities für Autocompletion vorbereiten
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		-- 3. Server definieren
 		local servers = {
 			jq = {},
 			debugpy = {},
@@ -62,13 +55,13 @@ return {
 			pyright = {
 				settings = {
 					pyright = {
-						-- Nutzt Ruff für Import-Organisation
+						-- Deaktiviert, da Ruff das Sortieren der Imports übernimmt
 						disableOrganizeImports = true,
 					},
 					python = {
 						analysis = {
-							-- "ignore" lässt Ruff das Linting übernehmen,
-							-- Pyright bleibt für Type-Checking zuständig
+							-- WICHTIG: Aktiviert die Vorschläge für Auto-Imports
+							autoImportCompletions = true,
 							typeCheckingMode = "basic",
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
@@ -82,13 +75,12 @@ return {
 					Lua = {
 						completion = { callSnippet = "Replace" },
 						diagnostics = {
-							globals = { "vim" }, -- Verhindert Warnungen bei der Neovim-API
+							globals = { "vim" },
 						},
 						workspace = {
 							checkThirdParty = false,
 							library = {
 								vim.env.VIMRUNTIME,
-								-- Damit erkennt der LSP auch Plugins in deinem Config-Ordner
 								"${3rd}/luv/library",
 							},
 						},
@@ -97,14 +89,13 @@ return {
 				},
 			},
 			ruff = {
-				-- Verhindert, dass Ruff Hover-Dokumentation anzeigt (das soll Pyright machen)
 				on_attach = function(client)
+					-- Verhindert Konflikte mit Pyright beim Hovern
 					client.server_capabilities.hoverProvider = false
 				end,
 			},
 		}
 
-		-- 4. Mason Setup & Automatisches Server-Setup
 		require("mason").setup()
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {

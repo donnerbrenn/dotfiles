@@ -24,17 +24,17 @@ set("n", "<leader>wh", "<C-w>s", { desc = "Horizontal split" })
 set("n", "<leader>wm", ":resize | vertical resize<CR>", { desc = "Maximize window" })
 set("n", "<leader>wv", "<C-w>v", { desc = "Vertical split" })
 
--- Navigation
+-- === NAVIGATION ===
 set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
 
 -- Resizing (Arrows allowed here)
-set("n", "<C-Down>", "<cmd>resize -2<CR>", { desc = "Resize Height -" })
-set("n", "<C-Left>", "<cmd>vertical resize -2<CR>", { desc = "Resize Width -" })
-set("n", "<C-Right>", "<cmd>vertical resize +2<CR>", { desc = "Resize Width +" })
-set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Resize Height +" })
+set("n", "<C-Down>", "<cmd>resize -4<CR>", { desc = "Resize Height -" })
+set("n", "<C-Left>", "<cmd>vertical resize -4<CR>", { desc = "Resize Width -" })
+set("n", "<C-Right>", "<cmd>vertical resize +4<CR>", { desc = "Resize Width +" })
+set("n", "<C-Up>", "<cmd>resize +4<CR>", { desc = "Resize Height +" })
 
 -- === MOVING & SCROLLING ===
 set("n", "<C-d>", "<C-d>zz", { desc = "Scroll Down" })
@@ -102,9 +102,12 @@ set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer
 set({ "n", "x", "o" }, "<leader>j", function()
 	require("flash").jump()
 end, { desc = "Flash" })
+set("o", "j", function()
+	require("flash").remote()
+end, { desc = "Remote Flash" })
 
--- -- === TREESJ ===
-vim.keymap.set("n", "<leader>cj", function()
+-- -- === TREESJ ==
+set("n", "<leader>cj", function()
 	require("treesj").toggle()
 end, { desc = "Code: Toggle Split/Join" })
 

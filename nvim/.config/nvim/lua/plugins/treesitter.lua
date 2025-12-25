@@ -1,35 +1,47 @@
-return { -- Highlight, edit, and navigate code
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
-	opts = {
-		ensure_installed = {
-			"bash",
-			"c",
-			"diff",
-			"html",
-			"lua",
-			"python",
-			"luadoc",
-			"markdown",
-			"vim",
-			"vimdoc",
-			"glsl",
+return {
+	{
+		"nvim-treesitter/nvim-treesitter",
+		tag = "v0.9.3", -- Stabiler Fixpunkt gegen das aktuelle Chaos
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+		opts = {
+			ensure_installed = { "bash", "c", "lua", "python", "markdown", "vim", "vimdoc", "glsl" },
+			highlight = { enable = true },
+			indent = { enable = true }, -- Aktiviert Treesitter-Indentation
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+						["ac"] = "@class.outer",
+						["ic"] = "@class.inner",
+						["ai"] = "@conditional.outer",
+						["ii"] = "@conditional.inner",
+						["al"] = "@loop.outer",
+						["il"] = "@loop.inner",
+					},
+					selection_modes = {
+						["@function.outer"] = "V",
+						["@function.inner"] = "V",
+						["@class.outer"] = "V",
+						["@class.inner"] = "V",
+						["@conditional.outer"] = "V",
+						["@conditional.inner"] = "V",
+						["@loop.outer"] = "V",
+						["@loop.inner"] = "V",
+					},
+				},
+				move = {
+					enable = true,
+					set_jumps = true,
+					goto_next_start = { ["<Tab>"] = "@function.outer" },
+					goto_previous_start = { ["<S-Tab>"] = "@function.outer" },
+				},
+			},
 		},
-		-- Autoinstall languages that are not installed
-		auto_install = true,
-		highlight = {
-			enable = true,
-			additional_vim_regex_highlighting = { "ruby" },
-		},
-		indent = { enable = true, disable = { "ruby" } },
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
+		end,
 	},
-	config = function(_, opts)
-		require("nvim-treesitter.install").prefer_git = true
-		---@diagnostic disable-next-line: missing-fields
-		require("nvim-treesitter.configs").setup(opts)
-	end,
 }

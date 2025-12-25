@@ -1,10 +1,15 @@
 keybind = ctrl+shift+r=reload_config
 background = #0d0d17
 font-family = RobotoMono Nerd Font
-font-size = 16
+font-size = 20
 cursor-style = block
 background-opacity = 0.7
 background-blur = true
 window-padding-x = 10
 window-padding-y = 10
 #custom-shader = shaders2/cursor_blaze_tapered.glsl
+# Navigation zwischen Splits mit Ctrl + Alt + hjkl
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+j=goto_split:bottom
+keybind = ctrl+alt+k=goto_split:top
+keybind = ctrl+alt+l=goto_split:right

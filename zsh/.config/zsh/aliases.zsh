@@ -45,6 +45,6 @@ alias pacli='pacman -Qq | fzf --preview "echo \"--- Paketinfo ---\" && pacman -Q
 alias update='sudo pacman -Syyu' #update via pacman
 alias sshfs='sshfs -o reconnect -o compression=no -o Cipher=chacha20-poly1305@openssh.com -o cache=yes -o kernel_cache -o ServerAliveInterval=15 -o ServerAliveCountMax=3' #more performance for sshfs
 alias spot="ncmpcpp -p 6601" #Start ncmpcpp and connect it to mopidy on port 6601
-se() { find -L ~/dotfiles -type f |  fzf --multi --preview 'bat --style=numbers --color=always --line-range :500 {}'  --preview-window=right:50% |  xargs -r $EDITOR
-}
+se() { find -L ~/dotfiles -type f |  fzf --multi --preview 'bat --style=numbers --color=always --line-range :500 {}'  --preview-window=right:50% |  xargs -r $EDITOR }
+sn() { find -L ~/.config/nvim/ -type f |  fzf --multi --preview 'bat --style=numbers --color=always --line-range :500 {}'  --preview-window=right:50% |  xargs -r $EDITOR }
 vf() {fzf | xargs -r -I % $EDITOR % ;}
