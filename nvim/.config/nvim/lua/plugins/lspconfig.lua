@@ -1,5 +1,9 @@
 return {
 	"neovim/nvim-lspconfig",
+	-- TRIGGER: LSP lädt erst, wenn du eine Datei öffnest oder erstellst.
+	-- Das spart die ~6.5ms beim Initialstart komplett ein.
+	event = { "BufReadPre", "BufNewFile" },
+
 	dependencies = {
 		{ "folke/lazydev.nvim", ft = "lua", opts = {} },
 		{ "williamboman/mason.nvim", config = true },
@@ -9,6 +13,8 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 	config = function()
+		-- Alles innerhalb dieser Funktion wird erst ausgeführt,
+		-- wenn das obige 'event' eintritt.
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -54,13 +60,9 @@ return {
 			glsl_analyzer = {},
 			pyright = {
 				settings = {
-					pyright = {
-						-- Deaktiviert, da Ruff das Sortieren der Imports übernimmt
-						disableOrganizeImports = true,
-					},
+					pyright = { disableOrganizeImports = true },
 					python = {
 						analysis = {
-							-- WICHTIG: Aktiviert die Vorschläge für Auto-Imports
 							autoImportCompletions = true,
 							typeCheckingMode = "basic",
 							autoSearchPaths = true,
@@ -74,9 +76,7 @@ return {
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },
-						diagnostics = {
-							globals = { "vim" },
-						},
+						diagnostics = { globals = { "vim" } },
 						workspace = {
 							checkThirdParty = false,
 							library = {
@@ -90,7 +90,6 @@ return {
 			},
 			ruff = {
 				on_attach = function(client)
-					-- Verhindert Konflikte mit Pyright beim Hovern
 					client.server_capabilities.hoverProvider = false
 				end,
 			},

@@ -1,11 +1,10 @@
 return {
 	{
-		"echasnovski/mini.nvim",
+		"mhartington/oceanic-next",
 		version = "*",
-		priority = 1000, -- Lädt das Theme sofort beim Start
+		priority = 1000,
 		config = function()
-			-- Aktiviert das Farbschema
-			vim.cmd.colorscheme("minischeme")
+			vim.cmd.colorscheme("OceanicNext")
 		end,
 	},
 }

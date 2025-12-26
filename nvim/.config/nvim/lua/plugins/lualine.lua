@@ -1,6 +1,8 @@
 -- lua/plugins/lualine.lua
 return {
 	"nvim-lualine/lualine.nvim",
+	-- TRIGGER: Lade die Statuszeile erst, wenn die UI initialisiert wurde.
+	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("lualine").setup({
@@ -49,8 +51,8 @@ return {
 							end
 							return table.concat(names, ", ")
 						end,
-						icon = "󰒋", -- Modernes Server-Icon
-						color = { fg = "#82aaff", gui = "bold" }, -- Material Blue
+						icon = "󰒋",
+						color = { fg = "#82aaff", gui = "bold" },
 					},
 					{ "filetype" },
 				},

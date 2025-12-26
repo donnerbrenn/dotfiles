@@ -6,10 +6,13 @@ local set = vim.keymap.set
 set("n", "<leader>a", "ggVG", { desc = "Select All" })
 set("n", "<leader>y", "mzggVGy`z", { desc = "Yank All" })
 set("x", "<leader>p", [["_dP]], { desc = "Paste (Keep Register)" })
+set("n", "J", "mzJ`z", { desc = "Join lines (stay put)" })
 
 -- === INSERTING ===
 set("n", "<leader>O", "O<ESC>", { desc = "Insert Line Above" })
 set("n", "<leader>o", "o<ESC>", { desc = "Insert Line Below" })
+set("x", "p", [["_dP]])
+set("n", "x", [["_x]])
 
 -- === BUFFERS ===
 set("n", "<S-h>", "<cmd>bp<CR>", { desc = "Prev buffer" })
@@ -106,11 +109,6 @@ set("o", "j", function()
 	require("flash").remote()
 end, { desc = "Remote Flash" })
 
--- -- === TREESJ ==
-set("n", "<leader>cj", function()
-	require("treesj").toggle()
-end, { desc = "Code: Toggle Split/Join" })
-
 -- === DADBOD ===
 -- set("n", "<leader>tu", "<cmd>DBUIToggle<cr>", { desc = "Toggle DB UI" })
 --
@@ -118,6 +116,7 @@ end, { desc = "Code: Toggle Split/Join" })
 local M = {}
 -- Die Funktion für deine LSP-Bindings
 M.set_lsp_keys = function(event)
+	local opts = { buffer = event.buf }
 	set(
 		"n",
 		"<leader>ld",
@@ -162,6 +161,7 @@ M.set_lsp_keys = function(event)
 	set("n", "<leader>lgD", vim.lsp.buf.declaration, { buffer = event.buf, desc = "LSP: [G]oto [D]eclaration" })
 	set("n", "<leader>lI", "<cmd>LspInfo<CR>", { desc = "LSP: Info" })
 	set("n", "<leader>lR", "<cmd>LspRestart<CR>", { desc = "LSP: Restart" })
+	set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: [C]ode [A]ction" })
 	-- Inlay Hints Toggle (bedingt durch Server-Support)
 	local client = vim.lsp.get_client_by_id(event.data.client_id)
 	if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
