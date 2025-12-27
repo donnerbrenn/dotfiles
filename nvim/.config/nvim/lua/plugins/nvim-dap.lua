@@ -90,6 +90,7 @@ return {
 
 		-- DAP UI Setup (Deine Icons und Einstellungen)
 		dapui.setup({
+			-- Deine Icons bleiben gleich
 			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 			controls = {
 				enabled = true,
@@ -106,8 +107,30 @@ return {
 					disconnect = "",
 				},
 			},
+			-- HIER definierst du die Aufteilung:
+			layouts = {
+				{
+					-- Seitenleiste (Links)
+					elements = {
+						{ id = "scopes", size = 0.35 }, -- Wo bin ich?
+						{ id = "stacks", size = 0.35 }, -- Call Stack
+						{ id = "breakpoints", size = 0.15 },
+						{ id = "watches", size = 0.15 },
+					},
+					position = "left",
+					size = 40,
+				},
+				{
+					-- Untere Leiste
+					elements = {
+						{ id = "repl", size = 0.45 },
+						{ id = "console", size = 0.55 },
+					},
+					position = "bottom",
+					size = 10, -- Höhe des unteren Fensters
+				},
+			},
 		})
-
 		-- Listeners
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
