@@ -9,10 +9,9 @@ end
 
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
 -- Plugins & Einstellungen
 require("lazy").setup({
-	"tpope/vim-sleuth",
+	{ "tpope/vim-sleuth", event = "BufRead" }, -- Lädt erst, wenn eine Datei gelesen wird
 	{ import = "plugins" },
 	change_detection = false,
 })

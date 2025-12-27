@@ -1,14 +1,19 @@
 return {
-
 	"goolord/alpha-nvim",
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	},
+	-- WICHTIG: Explizit als lazy markieren, damit es nicht im 'start'-Block landet
+	lazy = true,
+	-- Es soll nur laden, wenn keine Argumente (Dateien) beim Start übergeben wurden
+	cond = function()
+		return vim.fn.argc() == 0
+	end,
+	-- Da cond wahr ist, wenn wir 'nvim' ohne Datei tippen, wird es sofort danach geladen
+	event = "VimEnter",
+	dependencies = {},
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.startify")
 		dashboard.section.header.val = {
-			[[_____   __                     _____]],
+			[[_____  __                     _____]],
 			[[___  | / /_____ ______ ___   _____(_)_______ ___]],
 			[[__   |/ / _  _ \_  __ \__ | / /__  / __  __ `__ \]],
 			[[_  /|  /  /  __// /_/ /__ |/ / _  /  _  / / / / /]],

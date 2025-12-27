@@ -3,7 +3,6 @@ return {
 	"nvim-lualine/lualine.nvim",
 	-- TRIGGER: Lade die Statuszeile erst, wenn die UI initialisiert wurde.
 	event = "VeryLazy",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("lualine").setup({
 			options = {

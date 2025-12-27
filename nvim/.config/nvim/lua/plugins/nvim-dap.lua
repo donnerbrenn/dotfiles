@@ -1,7 +1,7 @@
 return {
 	"mfussenegger/nvim-dap",
-	-- 1. TRIGGER: Wir definieren die Tasten hier oben.
-	-- Sobald eine gedrückt wird, lädt lazy.nvim alles andere.
+	lazy = true,
+	-- Trigger über Keys ODER wenn du ein Python/Go File öffnest
 	keys = {
 		{
 			"<leader>td",
@@ -60,37 +60,43 @@ return {
 			desc = "Debug: See last session result.",
 		},
 	},
+	-- Zusätzlicher Trigger für Dateitypen
+	ft = { "python", "go", "cpp", "c", "rust" },
 
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"nvim-neotest/nvim-nio",
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-		-- Deine Debugger-Liste
+		-- Nur echte Neovim-Plugins hier lassen!
 		"leoluz/nvim-dap-go",
-		"mfussenegger/nvim-dap-python",
-		"rogalmic/vscode-bash-debug",
-		"vadimcn/vscode-lldb",
-		"microsoft/vscode-cpptools",
-		"microsoft/debugpy",
-		"go-delve/delve",
-		"tomblind/local-lua-debugger-vscode",
+		-- Python DAP explizit als Lazy-Dependency
+		{ "mfussenegger/nvim-dap-python", ft = "python" },
 	},
 
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
 
-		-- Mason-DAP Setup
+		-- Mason-DAP Setup: Hier kommen die externen Debugger rein!
 		require("mason-nvim-dap").setup({
+			ensure_installed = {
+				"python",
+				"delve",
+				"codelldb",
+				"bash-debug-adapter",
+			},
 			automatic_installation = true,
-			handlers = {},
-			ensure_installed = {},
+			handlers = {
+				-- Standard-Handler für automatische Konfiguration
+				function(config)
+					require("mason-nvim-dap").default_setup(config)
+				end,
+			},
 		})
 
-		-- DAP UI Setup (Deine Icons und Einstellungen)
+		-- DAP UI Setup
 		dapui.setup({
-			-- Deine Icons bleiben gleich
 			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 			controls = {
 				enabled = true,
@@ -107,13 +113,11 @@ return {
 					disconnect = "",
 				},
 			},
-			-- HIER definierst du die Aufteilung:
 			layouts = {
 				{
-					-- Seitenleiste (Links)
 					elements = {
-						{ id = "scopes", size = 0.35 }, -- Wo bin ich?
-						{ id = "stacks", size = 0.35 }, -- Call Stack
+						{ id = "scopes", size = 0.35 },
+						{ id = "stacks", size = 0.35 },
 						{ id = "breakpoints", size = 0.15 },
 						{ id = "watches", size = 0.15 },
 					},
@@ -121,26 +125,25 @@ return {
 					size = 40,
 				},
 				{
-					-- Untere Leiste
-					elements = {
-						{ id = "repl", size = 0.45 },
-						{ id = "console", size = 0.55 },
-					},
+					elements = { { id = "repl", size = 0.45 }, { id = "console", size = 0.55 } },
 					position = "bottom",
-					size = 10, -- Höhe des unteren Fensters
+					size = 10,
 				},
 			},
 		})
-		-- Listeners
+
+		-- Automatisches UI öffnen/schließen
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
-		-- Go Setup
-		require("dap-go").setup({
-			delve = {
-				detached = vim.fn.has("win32") == 0,
-			},
-		})
+		-- Adapter-spezifische Konfigurationen
+		require("dap-go").setup()
+
+		-- Python Pfad finden und Setup (nur wenn Plugin geladen)
+		local status_ok, dap_python = pcall(require, "dap-python")
+		if status_ok then
+			dap_python.setup("python3")
+		end
 	end,
 }
