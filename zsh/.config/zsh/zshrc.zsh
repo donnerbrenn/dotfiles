@@ -10,4 +10,4 @@ source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/autostart.zsh
 source ~/.config/zsh/dependencies.zsh
 
-
+export PATH="$HOME/script:$PATH"

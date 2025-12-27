@@ -94,13 +94,15 @@ set("n", "<leader>pmu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" })
 -- === LAZY ===
 set("n", "<leader>pll", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
 set("n", "<leader>plu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })
+set("n", "<leader>plp", "<cmd>Lazy profile<CR>", { desc = "Lazy profile" })
 
 -- === OUTLINE ===
-set("n", "<leader>to", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
-
--- === NVIM TREE ===
-set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
-
+vim.keymap.set("n", "<leader>to", function()
+	require("outline").toggle()
+end, { desc = "Toggle Outline" }) -- === NVIM TREE ===
+set("n", "<leader>te", function()
+	require("nvim-tree.api").tree.toggle()
+end, { desc = "Toggle file explorer" })
 -- === FLASH ===
 set({ "n", "x", "o" }, "<leader>j", function()
 	require("flash").jump()
