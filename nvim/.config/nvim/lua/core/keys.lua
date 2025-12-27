@@ -88,9 +88,10 @@ set("n", "dj", function()
 end, { desc = "Next Diagnostic" })
 
 -- === MASON ===
-set("n", "<leader>pmm", "<cmd>Mason<CR>", { desc = "Mason " })
-set("n", "<leader>pmu", "<cmd>MasonUpdate<CR>", { desc = "Mason update" })
---
+set("n", "<leader>pmm", function()
+	require("mason.ui").open()
+end, { desc = "Mason UI" })
+
 -- === LAZY ===
 set("n", "<leader>pll", "<cmd>Lazy<CR>", { desc = "Go to Lazy" })
 set("n", "<leader>plu", "<cmd>Lazy update<CR>", { desc = "Lazy update" })

@@ -1,11 +1,15 @@
 return {
-	"theHamsta/nvim-dap-virtual-text",
-	lazy = true,
-	opts = {
-		enabled = true,
-		highlight_changed_variables = true,
-		show_stop_reason = true,
-		virt_text_pos = "eol",
-		all_frames = true,
+	"mfussenegger/nvim-dap",
+	dependencies = {
+		"theHamsta/nvim-dap-virtual-text", -- Hier einfügen
 	},
+	config = function()
+		local dap = require("dap")
+		-- Initialisiere die virtuellen Texte hier
+		require("nvim-dap-virtual-text").setup({
+			enabled = true,
+			highlight_changed_variables = true,
+			-- ... deine restlichen opts
+		})
+	end,
 }

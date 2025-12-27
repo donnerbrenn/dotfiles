@@ -21,7 +21,7 @@ alias la='eza --icons -la' #long eza
 alias lh='eza --icons -lah' #long eza with hidden files
 alias ff='fzf --preview="bat --color=always {}"' #find a file or directory
 alias fff='find . -type f | fzf --preview "bat --color=always {}"' #find a file
-alias b='time cat ~/bible.txt' #benchmark terminal with the full bible
+alias b='time cat ~/Dokumente/bible.txt' #benchmark terminal with the full bible
 alias man='batman' #replace man by batman
 alias tteasy='tt -words ~/tt/wortliste-easy.txt' #start a typing test with easy words
 alias tthard='tt -words ~/tt/wortliste-hard.txt' #start a typing test with hard words
