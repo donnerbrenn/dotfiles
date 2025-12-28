@@ -1,6 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
-	lazy = true,
+	event = "VeryLazy",
 	-- Trigger über Keys ODER wenn du ein Python/Go File öffnest
 	keys = {
 		{
@@ -82,7 +82,6 @@ return {
 		require("mason-nvim-dap").setup({
 			ensure_installed = {
 				"python",
-				"delve",
 				"codelldb",
 				"bash-debug-adapter",
 			},
