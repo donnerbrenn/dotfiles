@@ -1,6 +1,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	-- TRIGGER: Lädt erst beim Drücken der Keys
+	-- TRIGGER: Lädt entweder beim Drücken der Keys ODER kurz nach dem Start im Hintergrund
+	event = "VeryLazy",
 	keys = {
 		{
 			"<leader>sh",
@@ -70,7 +71,7 @@ return {
 			function()
 				require("telescope.builtin").oldfiles()
 			end,
-			desc = '[S]earch Recent Files ("." for repeat)',
+			desc = "[S]earch Recent Files",
 		},
 		{
 			"<leader><leader>",
@@ -135,7 +136,7 @@ return {
 			},
 		})
 
-		-- Extensions erst laden, wenn die Config-Funktion läuft
+		-- Extensions direkt laden, da wir im Hintergrund (VeryLazy) sind
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 	end,

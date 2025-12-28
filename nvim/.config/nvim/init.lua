@@ -31,6 +31,6 @@ end
 require("core.options")
 require("core.highlights")
 require("core.autocmds")
-require("core.keys")
 require("core.lazy")
 require("core.diagnostics")
+require("core.keys")

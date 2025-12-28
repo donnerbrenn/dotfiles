@@ -1,7 +1,13 @@
 vim.g.maplocalleader = " "
 vim.g.mapleader = " "
 local set = vim.keymap.set
-
+-- === ERGONOMICS ===
+set("s", '"', '""<C-o>h')
+set("s", "'", "'")
+set("s", "(", "(")
+set("i", "<A-7>", "<C-o>A {<CR>}<C-o>O")
+set("i", "<A-,>", "<C-o>A;<CR>")
+set("i", "<A-.>", "<C-o>A:<CR>")
 -- === BASICS & SELECTION ===
 set("n", "<leader>a", "ggVG", { desc = "Select All" })
 set("n", "<leader>y", "mzggVGy`z", { desc = "Yank All" })
@@ -18,6 +24,7 @@ set("n", "x", [["_x]])
 set("n", "<S-h>", "<cmd>bp<CR>", { desc = "Prev buffer" })
 set("n", "<S-l>", "<cmd>bn<CR>", { desc = "Next buffer" })
 set("n", "<leader>bc", "<cmd>bd<CR>", { desc = "Close buffer" })
+set("n", "<leader>bf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format buffer" })
 set("n", "<leader>bw", "<cmd>w<CR>", { desc = "Write buffer" })
 
 -- === WINDOWS ===
@@ -32,6 +39,7 @@ set("n", "<C-h>", "<C-w>h", { desc = "Focus Left" })
 set("n", "<C-j>", "<C-w>j", { desc = "Focus Down" })
 set("n", "<C-k>", "<C-w>k", { desc = "Focus Up" })
 set("n", "<C-l>", "<C-w>l", { desc = "Focus Right" })
+set("i", "<C-e>", "<End>", { desc = "End of line" })
 
 -- Resizing (Arrows allowed here)
 set("n", "<C-Down>", "<cmd>resize -4<CR>", { desc = "Resize Height -" })
