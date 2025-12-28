@@ -11,7 +11,7 @@ return {
 				component_separators = { left = nil, right = nil },
 			},
 			sections = {
-				lualine_a = { { "mode", icon = "" } },
+				lualine_a = { { "mode", icon = "" } },
 				lualine_b = { { "location", icon = "" } },
 				lualine_c = {
 					{ "filename", icon = "", padding = { left = 1, right = 1 } },
@@ -19,10 +19,10 @@ return {
 						"diagnostics",
 						sources = { "nvim_diagnostic" },
 						symbols = {
-							error = "󰅚 ",
-							warn = "󰀪 ",
-							info = "󰋽 ",
-							hint = "󰌶 ",
+							error = " ",
+							warn = " ",
+							info = " ",
+							hint = "󰌵",
 						},
 						diagnostics_color = {
 							error = { fg = "#dd5370" },
@@ -50,7 +50,7 @@ return {
 							end
 							return table.concat(names, ", ")
 						end,
-						icon = "󰒋",
+						icon = "",
 						color = { fg = "#82aaff", gui = "bold" },
 					},
 					{ "filetype" },
