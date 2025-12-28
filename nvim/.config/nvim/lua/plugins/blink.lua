@@ -1,19 +1,11 @@
--- Hilfsfunktion zum Setzen von Highlights
-local set_hl = vim.api.nvim_set_hl
-
-set_hl(0, "BlinkCmpMenu", { bg = "NONE" })
-set_hl(0, "BlinkCmpMenuBorder", { fg = "#45475a" })
-set_hl(0, "BlinkCmpMenuSelection", { bg = "#313244", fg = "NONE", bold = true })
-set_hl(0, "BlinkCmpLabelMatch", { fg = "#89b4fa", bold = true })
-set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
-set_hl(0, "BlinkCmpDocBorder", { fg = "#45475a" })
-set_hl(0, "BlinkCmpSignature", { bg = "NONE" })
-set_hl(0, "BlinkCmpSignatureBorder", { fg = "#45475a" })
-
 return {
 	"saghen/blink.cmp",
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+	},
 	version = "*",
 	event = { "BufReadPost", "BufNewFile" },
+
 	opts = {
 		keymap = {
 			preset = "enter",
@@ -30,10 +22,10 @@ return {
 		completion = {
 			menu = {
 				border = "rounded",
-				-- Hier nutzen wir jetzt deine definierten Highlights
+				-- Wir fügen 'winblend = 0' hinzu, um sicherzugehen, dass Neovim nicht mitspricht
+				winblend = 0,
 				winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 			},
-			-- DAS WAR DER FEHLER: documentation muss INNERHALB von completion stehen
 			documentation = {
 				auto_show = true,
 				window = {
@@ -43,11 +35,32 @@ return {
 			},
 		},
 		signature = {
-			enabled = true, -- Empfehlenswert, falls du Signature Help willst
+			enabled = true,
 			window = {
 				border = "rounded",
 				winhighlight = "Normal:BlinkCmpSignature,FloatBorder:BlinkCmpSignatureBorder",
 			},
 		},
 	},
+
+	config = function(_, opts)
+		local set_hl = vim.api.nvim_set_hl
+
+		-- Damit die Transparenz wirklich greift, setzen wir 'bg = "NONE"'
+		-- Wir nutzen die Farben aus deiner Lualine für ein stimmiges Gesamtbild
+		set_hl(0, "BlinkCmpMenu", { bg = "NONE" })
+		set_hl(0, "BlinkCmpMenuBorder", { fg = "#45475a", bg = "NONE" })
+		set_hl(0, "BlinkCmpMenuSelection", { bg = "#313244", fg = "NONE", bold = true })
+
+		-- Hier nutzen wir das Blau aus deiner Lualine (#82aaff) für die Treffer
+		set_hl(0, "BlinkCmpLabelMatch", { fg = "#82aaff", bold = true })
+
+		set_hl(0, "BlinkCmpDoc", { bg = "NONE" })
+		set_hl(0, "BlinkCmpDocBorder", { fg = "#45475a", bg = "NONE" })
+
+		set_hl(0, "BlinkCmpSignature", { bg = "NONE" })
+		set_hl(0, "BlinkCmpSignatureBorder", { fg = "#45475a", bg = "NONE" })
+
+		require("blink.cmp").setup(opts)
+	end,
 }
