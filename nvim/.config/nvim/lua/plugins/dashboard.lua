@@ -5,7 +5,6 @@ return {
 		return vim.fn.argc() == 0
 	end,
 	event = "VimEnter",
-	-- mini.icons wurde entfernt, um die letzten Millisekunden zu kitzeln
 	config = function()
 		require("dashboard").setup({
 			theme = "doom",
@@ -27,6 +26,7 @@ return {
 					[[                                                   ]],
 				},
 				center = {
+					{ icon = "📄 ", desc = "New File            ", key = "e", action = "ene" },
 					{ icon = "🔍 ", desc = "Find File           ", key = "f", action = "Telescope find_files" },
 					{ icon = "🕘 ", desc = "Recent Files        ", key = "r", action = "Telescope oldfiles" },
 					{ icon = "✨ ", desc = "Find Text           ", key = "g", action = "Telescope live_grep" },
