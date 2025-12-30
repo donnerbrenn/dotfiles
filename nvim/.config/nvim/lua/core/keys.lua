@@ -8,11 +8,11 @@ set("s", "(", "(")
 set("i", "<A-7>", "<C-o>A {<CR>}<C-o>O")
 set("i", "<A-,>", "<C-o>A;<CR>")
 set("i", "<A-.>", "<C-o>A:<CR>")
+set("n", "J", "mzJ`z")
 -- === BASICS & SELECTION ===
 set("n", "<leader>a", "ggVG", { desc = "Select All" })
 set("n", "<leader>y", "mzggVGy`z", { desc = "Yank All" })
 set("x", "<leader>p", [["_dP]], { desc = "Paste (Keep Register)" })
-set("n", "J", "mzJ`z", { desc = "Join lines (stay put)" })
 
 -- === INSERTING ===
 set("n", "<leader>O", "O<ESC>", { desc = "Insert Line Above" })
@@ -88,10 +88,10 @@ set({ "n", "i", "v" }, "<Down>", msg, { desc = "Don't touch!" })
 -- === DIAGNOSTICS ===
 set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Show Diagnostic Error" })
 -- set("n", "<leader>0", vim.diagnostic.setloclist, { desc = "Open quickfix list" })
-set("n", "dk", function()
+set("n", "<C-S-Tab>", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Prev Diagnostic" })
-set("n", "dj", function()
+set("n", "<C-Tab>", function()
 	vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Next Diagnostic" })
 
