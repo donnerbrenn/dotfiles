@@ -1,6 +1,5 @@
 return {
 	"neovim/nvim-lspconfig",
-	-- WICHTIG: 'VeryLazy' sorgt dafür, dass Mason auch ohne Datei nach dem Start lädt
 	event = { "BufReadPre", "BufNewFile", "VeryLazy" },
 	dependencies = {
 		{ "folke/lazydev.nvim", ft = "lua", opts = {} },
@@ -16,26 +15,39 @@ return {
 			capabilities = blink.get_lsp_capabilities(capabilities)
 		end
 
-		-- Deine LSP-Liste für Mason
+		-- 1. Globale Rundungen für LSP-Popups (Hover, Signature Help)
+		local border = "rounded"
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+		vim.lsp.handlers["textDocument/signatureHelp"] =
+			vim.lsp.with(vim.lsp.handlers.signatureHelp, { border = border })
+
+		-- Rundungen für Diagnose-Fenster
+		vim.diagnostic.config({
+			float = { border = border },
+		})
+
+		-- 2. Mason Setup mit Rundungen
+		require("mason").setup({
+			ui = {
+				border = border,
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
+
 		local servers = {
 			clangd = {},
 			pyright = {},
 			lua_ls = {},
-			-- hier weitere Server ergänzen
 		}
 
-		-- Mason Setup
-		require("mason").setup()
-
-		-- WICHTIG: Mason-Tool-Installer muss hier explizit konfiguriert werden!
-		-- Das war wahrscheinlich der Grund, warum die Liste leer blieb.
 		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Beispiel für Formatter
-		})
+		vim.list_extend(ensure_installed, { "stylua" })
 
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
@@ -46,7 +58,6 @@ return {
 			},
 		})
 
-		-- Dein LspAttach Autocmd
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(event)
 				require("core.keys").set_lsp_keys(event)

@@ -1,9 +1,7 @@
 -- lua/plugins/lualine.lua
 return {
 	"nvim-lualine/lualine.nvim",
-	-- TRIGGER: Lade die Statuszeile erst, wenn die UI initialisiert wurde.
 	event = "VeryLazy",
-	-- dependencies = { "mhartington/oceanic-next" },
 	config = function()
 		require("lualine").setup({
 			options = {

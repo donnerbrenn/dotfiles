@@ -32,15 +32,4 @@ require("lazy").setup({
 		enabled = true,
 		notify = true,
 	},
-	performance = {
-		rtp = {
-			-- Das sorgt dafür, dass die Startzeit so niedrig bleibt
-			disabled_plugins = {
-				"gzip",
-				"zipPlugin",
-				"netrwPlugin",
-				"tarPlugin",
-			},
-		},
-	},
 })

@@ -1,6 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	-- TRIGGER: Lädt entweder beim Drücken der Keys ODER kurz nach dem Start im Hintergrund
 	event = "VeryLazy",
 	keys = {
 		{
@@ -71,7 +70,7 @@ return {
 			function()
 				require("telescope.builtin").oldfiles()
 			end,
-			desc = "[S]earch Recent Files",
+			desc = '[S]earch Recent Files ("." for repeat)',
 		},
 		{
 			"<leader><leader>",
@@ -90,7 +89,7 @@ return {
 		{
 			"<leader>sc",
 			function()
-				require("telescope.builtin").colorscheme()
+				require("telescope.builtin").colorscheme({ enable_preview = true })
 			end,
 			desc = "[S]earch colorscheme",
 		},
@@ -129,14 +128,17 @@ return {
 			pickers = {
 				find_files = { theme = "ivy" },
 				live_grep = { theme = "ivy" },
-				colorscheme = { theme = "dropdown" },
+				-- 🎨 Hier ist die Magie für das Colorscheme-Picker
+				colorscheme = {
+					theme = "dropdown",
+					enable_preview = true,
+				},
 			},
 			extensions = {
 				["ui-select"] = { require("telescope.themes").get_dropdown() },
 			},
 		})
 
-		-- Extensions direkt laden, da wir im Hintergrund (VeryLazy) sind
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 	end,

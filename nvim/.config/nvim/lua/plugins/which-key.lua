@@ -3,46 +3,63 @@ return {
 	event = "VeryLazy",
 	opts = {
 		preset = "helix",
-		width = 0.9,
-		height = { min = 4, max = 50 }, --
-		icons = {
-			group = "+", -- Entfernt das "+" Zeichen
-			separator = " ", -- Sorgt für einen cleanen Abstand
-		},
-		-- Sortiert Gruppen (mit Icons) nach oben
-		sort = { "group", "local", "order", "alphanum" },
+		spec = {},
 		win = {
-			border = "rounded", -- Passt zu deinem Material-Look
+			border = "rounded",
 			padding = { 1, 2 },
+			wo = {
+				winblend = 0,
+			},
+		},
+		layout = {
+			width = 0.9,
+			height = { min = 4, max = 25 },
+			spacing = 3,
+		},
+		icons = {
+			group = "",
+			separator = "➜",
 		},
 	},
 	config = function(_, opts)
 		local wk = require("which-key")
 		wk.setup(opts)
-		vim.api.nvim_set_hl(0, "WhichKeyNormal", { bg = "#3a475e", fg = "#eeffff" })
-		vim.api.nvim_set_hl(0, "WhichKey", { fg = "#c3e88d", bold = true, underline = false })
-		vim.api.nvim_set_hl(0, "WhichKeyGroup", { fg = "#82aaff", bold = true, underline = false })
-		vim.api.nvim_set_hl(0, "WhichKeyDesc", { fg = "#eeffff", underline = false })
-		vim.api.nvim_set_hl(0, "WhichKeyBorder", { fg = "#c3e88d", bg = "#3a475e" })
+
+		local set_hl = vim.api.nvim_set_hl
+		set_hl(0, "WhichKeyGroup", { fg = "#82aaff", bold = true, underline = false })
+		set_hl(0, "WhichKeyIcon", { fg = "#82aaff", underline = false })
+		set_hl(0, "WhichKey", { fg = "#c3e88d", bold = true })
+		set_hl(0, "WhichKeyGroup", { fg = "#82aaff", bold = true })
+		set_hl(0, "WhichKeyDesc", { fg = "#eeffff" })
+		set_hl(0, "WhichKeySeparator", { fg = "#546e7a" })
+		set_hl(0, "WhichKeyBorder", { fg = "#82aaff" })
+		set_hl(0, "WhichKeyNormal", { bg = "NONE" })
 
 		wk.add({
-			-- Gruppen (Wir nutzen 'group' statt 'desc', wo es Sinn ergibt)
-			{ "<leader>c", group = "[C]ode", icon = "" },
-			{ "<leader>s", group = "[S]earch", icon = "" },
-			{ "<leader>p", group = "[P]ackages", icon = "" },
-			{ "<leader>t", group = "[T]oggle", icon = "󰔢" },
-			{ "<leader>w", group = "[W]indow", icon = "" },
-			{ "<leader>b", group = "[B]uffer", icon = "" },
-			{ "<leader>l", group = "[L]SP", icon = "" },
-			{ "<leader>d", group = "[D]iagnostics", icon = "" },
-			{ "<leader>j", group = "[J]ump", icon = "󱋿" },
-
-			-- Einzelne Keys (Icons ohne nervige Klammern)
+			{ "<leader>b", group = "Buffer", icon = "" },
+			{ "<leader>c", group = "Code", icon = "" },
+			{ "<leader>d", group = "Diagnostics", icon = "" },
+			{ "<leader>j", group = "Jump", icon = "󱋿" },
+			{ "<leader>l", group = "LSP", icon = "" },
+			{ "<leader>p", group = "Packages", icon = "" },
+			{ "<leader>s", group = "Search", icon = "" },
+			{ "<leader>t", group = "Toggle", icon = "󰔢" },
+			{ "<leader>w", group = "Window", icon = "" },
+			-- Einzelne Keys
 			{ "<leader>a", desc = "Select All", icon = "󰒆" },
-			{ "<leader>o", desc = "Insert Below", icon = "" },
-			{ "<leader>O", desc = "Insert Above", icon = "" },
 			{ "<leader>y", desc = "Yank All", icon = "" },
 			{ "<leader>R", desc = "Reload Config", icon = "󰑓" },
+			{ "<leader>O", "O<ESC>", desc = "Insert Line Above", icon = "" },
+			{ "<leader>o", "o<ESC>", desc = "Insert Line Below", icon = "" },
+
+			{
+				"<leader><leader>",
+				function()
+					require("telescope.builtin").current_buffer_fuzzy_find()
+				end,
+				desc = "Find in current buffer",
+				icon = "",
+			},
 		})
 	end,
 }
