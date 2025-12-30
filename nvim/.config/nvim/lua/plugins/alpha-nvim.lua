@@ -1,26 +1,35 @@
 return {
 	"goolord/alpha-nvim",
-	-- WICHTIG: Explizit als lazy markieren, damit es nicht im 'start'-Block landet
 	lazy = true,
-	-- Es soll nur laden, wenn keine Argumente (Dateien) beim Start übergeben wurden
 	cond = function()
 		return vim.fn.argc() == 0
 	end,
-	-- Da cond wahr ist, wenn wir 'nvim' ohne Datei tippen, wird es sofort danach geladen
 	event = "VimEnter",
 
 	dependencies = {
-		"nvim-tree/nvim-web-devicons",
+		{
+			"echasnovski/mini.icons",
+			version = false,
+			config = function()
+				require("mini.icons").setup()
+			end,
+		},
 	},
 
 	config = function()
-		-- Webicons initialisieren
-		require("nvim-web-devicons").setup({
-			default = true,
-		})
-
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.startify")
+		-- local icons = require("mini.icons")
+
+		-- 🔧 Patch: Startify File-Icon-Resolver überschreiben
+		dashboard.file_icon = function(path)
+			local ext = vim.fn.fnamemodify(path, ":e")
+			local icon, hl = icons.get("file", path)
+			if not icon then
+				icon, hl = icons.get("default")
+			end
+			return icon .. " ", hl
+		end
 
 		dashboard.section.header.val = {
 			[[_____  __                     _____]],
