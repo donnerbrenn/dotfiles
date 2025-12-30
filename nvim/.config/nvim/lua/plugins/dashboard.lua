@@ -10,11 +10,6 @@ return {
 			theme = "doom",
 			config = {
 				header = {
-					[[                                                   ]],
-					[[                                                   ]],
-					[[                                                   ]],
-					[[                                                   ]],
-					[[                                                   ]],
 					[[  _____   __                                       ]],
 					[[  ___  | / /_____ ______ ___   _____(_)_________   ]],
 					[[  __   |/ / _  _ \_  __ \__ | / /__  / __  __  /   ]],
@@ -30,13 +25,8 @@ return {
 					{ icon = "🔍 ", desc = "Find File           ", key = "f", action = "Telescope find_files" },
 					{ icon = "🕘 ", desc = "Recent Files        ", key = "r", action = "Telescope oldfiles" },
 					{ icon = "✨ ", desc = "Find Text           ", key = "g", action = "Telescope live_grep" },
-					{
-						icon = "⚙️ ",
-						desc = "Config              ",
-						key = "c",
-						action = "e " .. vim.fn.stdpath("config") .. "/init.lua",
-					},
 					{ icon = "💤 ", desc = "Lazy                ", key = "l", action = "Lazy" },
+					{ icon = "📦 ", desc = "Mason               ", key = "m", action = "Mason" },
 					{ icon = "❌ ", desc = "Quit                ", key = "q", action = "qa" },
 				},
 				footer = function()

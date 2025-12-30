@@ -15,12 +15,17 @@ return {
 			capabilities = blink.get_lsp_capabilities(capabilities)
 		end
 
-		-- 1. Globale Rundungen für LSP-Popups (Hover, Signature Help)
+		-- 1. FIX: Globale Rundungen ohne Deprecation-Warnungen
 		local border = "rounded"
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signatureHelp, { border = border })
 
+		-- Wir sagen dem LSP explizit, dass das Überschreiben hier gewollt ist
+		---@diagnostic disable-next-line: duplicate-set-field
+		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+			opts = opts or {}
+			opts.border = opts.border or border
+			return orig_util_open_floating_preview(contents, syntax, opts, ...)
+		end
 		-- Rundungen für Diagnose-Fenster
 		vim.diagnostic.config({
 			float = { border = border },
