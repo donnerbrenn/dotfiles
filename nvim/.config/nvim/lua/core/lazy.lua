@@ -9,9 +9,38 @@ end
 
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+
 -- Plugins & Einstellungen
 require("lazy").setup({
-	{ "tpope/vim-sleuth", event = "BufRead" }, -- Lädt erst, wenn eine Datei gelesen wird
+	-- Hier liegen deine Plugins
+	{ "tpope/vim-sleuth", event = "BufRead" },
 	{ import = "plugins" },
-	change_detection = false,
+}, {
+	-- Hier liegen die globalen Optionen für das Machwerk
+	ui = {
+		-- Der abgerundete Rahmen für das Lazy-Fenster
+		border = "rounded",
+		-- Optional: Wenn du willst, dass Lazy mini.icons nutzt
+		icons = {
+			ft = "📂",
+			lazy = "💤 ",
+			loaded = "",
+			not_loaded = "",
+		},
+	},
+	change_detection = {
+		enabled = false, -- Schaltet die Benachrichtigung bei Config-Änderungen aus
+		notify = false,
+	},
+	performance = {
+		rtp = {
+			-- Das sorgt dafür, dass die Startzeit so niedrig bleibt
+			disabled_plugins = {
+				"gzip",
+				"zipPlugin",
+				"netrwPlugin",
+				"tarPlugin",
+			},
+		},
+	},
 })
