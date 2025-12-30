@@ -29,8 +29,8 @@ require("lazy").setup({
 		},
 	},
 	change_detection = {
-		enabled = false, -- Schaltet die Benachrichtigung bei Config-Änderungen aus
-		notify = false,
+		enabled = true,
+		notify = true,
 	},
 	performance = {
 		rtp = {

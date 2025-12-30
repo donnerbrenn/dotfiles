@@ -5,6 +5,7 @@ return {
 		return vim.fn.argc() == 0
 	end,
 	event = "VimEnter",
+	-- mini.icons wurde entfernt, um die letzten Millisekunden zu kitzeln
 	config = function()
 		require("dashboard").setup({
 			theme = "doom",
@@ -43,7 +44,6 @@ return {
 				footer = function()
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-					-- 🔧 Padding hinzugefügt: Schiebt den Status weiter nach unten
 					return {
 						"",
 						"",
@@ -53,10 +53,10 @@ return {
 			},
 		})
 
-		-- Fix für die Tilden (~) am Rand
+		-- Tilden-Killer bleibt aktiv
 		vim.opt.fillchars:append({ eob = " " })
 
-		-- Farbschema-Anpassungen (Material-Blau)
+		-- Highlight-Gruppen (Material-Look)
 		local set_hl = vim.api.nvim_set_hl
 		set_hl(0, "DashboardHeader", { fg = "#82aaff", bold = true })
 		set_hl(0, "DashboardIcon", { fg = "#ffcb6b" })
