@@ -15,31 +15,22 @@ return {
 			capabilities = blink.get_lsp_capabilities(capabilities)
 		end
 
-		-- 1. FIX: Globale Rundungen ohne Deprecation-Warnungen
 		local border = "rounded"
 
-		-- Wir sagen dem LSP explizit, dass das Überschreiben hier gewollt ist
-		---@diagnostic disable-next-line: duplicate-set-field
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+		---@diagnostic disable-next-line: duplicate-set-field
 		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 			opts = opts or {}
 			opts.border = opts.border or border
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
 		end
-		-- Rundungen für Diagnose-Fenster
-		vim.diagnostic.config({
-			float = { border = border },
-		})
 
-		-- 2. Mason Setup mit Rundungen
+		vim.diagnostic.config({ float = { border = border } })
+
 		require("mason").setup({
 			ui = {
 				border = border,
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
+				icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" },
 			},
 		})
 

@@ -1,15 +1,23 @@
--- lazy.nvim config
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify",
+	},
 	opts = {
+		cmdline = {
+			view = "cmdline_popup",
+			format = {
+				cmdline = { icon = "  ", lang = "vim" },
+				search_down = { icon = "   ", lang = "regex" },
+			},
+		},
 		routes = {
 			{
 				filter = {
 					event = "msg_show",
-					any = {
-						{ find = "written" },
-					},
+					any = { { find = "written" } },
 				},
 				view = "mini",
 			},
@@ -19,6 +27,26 @@ return {
 			},
 		},
 		views = {
+			cmdline_popup = {
+				border = {
+					style = "rounded",
+					highlight = "NoiceBorderBright",
+				},
+				position = { row = "40%", col = "50%" },
+			},
+			popupmenu = {
+				relative = "editor",
+				border = {
+					style = "rounded",
+					highlight = "NoiceBorderBright",
+				},
+			},
+			hover = {
+				border = {
+					style = "rounded",
+					highlight = "NoiceBorderBright",
+				},
+			},
 			notify = {
 				replace = true,
 				merge = true,
@@ -31,17 +59,12 @@ return {
 			lsp_doc_border = true,
 		},
 	},
-	dependencies = {
-		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
-	},
 	config = function(_, opts)
 		require("notify").setup({
 			stages = "fade",
 			render = "minimal",
-			timeout = 5000,
-			-- Diese Zeile behebt den Fehler aus deinem Screenshot:
-			background_colour = "#1a1b26",
+			timeout = 3000,
+			background_colour = "#000000",
 			merge_duplicates = true,
 		})
 		require("noice").setup(opts)

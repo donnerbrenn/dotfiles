@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
-	 tag = "v0.9.3", -- Stabiler Fixpunkt gegen das aktuelle Chaos
+		tag = "v0.9.3", -- Stabiler Fixpunkt gegen das aktuelle Chaos
 		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		opts = {
 			ensure_installed = { "bash", "c", "lua", "python", "markdown", "vim", "vimdoc", "glsl" },

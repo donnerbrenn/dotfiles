@@ -17,8 +17,6 @@ return {
 					[[  /_/ |_/   \___/ \____/ _____/  /_/ / /_/ /_/     ]],
 					[[                                                   ]],
 					[[                                                   ]],
-					[[                                                   ]],
-					[[                                                   ]],
 				},
 				center = {
 					{ icon = "📄 ", desc = "New File            ", key = "e", action = "ene" },
@@ -33,7 +31,6 @@ return {
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 					return {
-						"",
 						"",
 						"⚡ Status: " .. stats.loaded .. "/" .. stats.count .. " plugins loaded in " .. ms .. "ms",
 					}

@@ -70,7 +70,7 @@ return {
 			function()
 				require("telescope.builtin").oldfiles()
 			end,
-			desc = '[S]earch Recent Files ("." for repeat)',
+			desc = "[S]earch Recent Files",
 		},
 		{
 			"<leader><leader>",
@@ -96,10 +96,7 @@ return {
 		{
 			"<leader>s/",
 			function()
-				require("telescope.builtin").live_grep({
-					grep_open_files = true,
-					prompt_title = "Live Grep in Open Files",
-				})
+				require("telescope.builtin").live_grep({ grep_open_files = true })
 			end,
 			desc = "[S]earch [/] in Open Files",
 		},
@@ -114,32 +111,41 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			cond = function()
-				return vim.fn.executable("make") == 1
-			end,
-		},
-		{ "nvim-telescope/telescope-ui-select.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "echasnovski/mini.icons", opts = {} },
 	},
 	config = function()
+		local icons = require("mini.icons")
+		icons.setup()
+		icons.mock_nvim_web_devicons()
+
+		local bright_white = "#ffffff"
+		local telescope_hl = {
+			TelescopeBorder = { fg = bright_white },
+			TelescopePromptBorder = { fg = bright_white },
+			TelescopeResultsBorder = { fg = bright_white },
+			TelescopePreviewBorder = { fg = bright_white },
+			TelescopePromptTitle = { fg = bright_white, bold = true },
+			TelescopeResultsTitle = { fg = bright_white, bold = true },
+			TelescopePreviewTitle = { fg = bright_white, bold = true },
+		}
+
+		for hl, col in pairs(telescope_hl) do
+			vim.api.nvim_set_hl(0, hl, col)
+		end
+
 		require("telescope").setup({
+			defaults = {
+				path_display = { "filename_first" },
+				sorting_strategy = "ascending",
+				layout_config = {
+					horizontal = { prompt_position = "top", preview_width = 0.55 },
+				},
+			},
 			pickers = {
 				find_files = { theme = "ivy" },
 				live_grep = { theme = "ivy" },
-				-- 🎨 Hier ist die Magie für das Colorscheme-Picker
-				colorscheme = {
-					theme = "dropdown",
-					enable_preview = true,
-				},
-			},
-			extensions = {
-				["ui-select"] = { require("telescope.themes").get_dropdown() },
 			},
 		})
-
-		pcall(require("telescope").load_extension, "fzf")
-		pcall(require("telescope").load_extension, "ui-select")
 	end,
 }

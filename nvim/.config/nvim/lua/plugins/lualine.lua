@@ -1,4 +1,3 @@
--- lua/plugins/lualine.lua
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
@@ -6,14 +5,18 @@ return {
 		require("lualine").setup({
 			options = {
 				theme = "material",
+				globalstatus = true,
 				section_separators = { left = nil, right = nil },
 				component_separators = { left = nil, right = nil },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = { "alpha", "dashboard" },
+				},
 			},
 			sections = {
 				lualine_a = { { "mode", icon = "" } },
 				lualine_b = { { "location", icon = "" } },
 				lualine_c = {
-					{ "filename", icon = "", padding = { left = 1, right = 1 } },
 					{
 						"diagnostics",
 						sources = { "nvim_diagnostic" },
@@ -26,13 +29,14 @@ return {
 						diagnostics_color = {
 							error = { fg = "#dd5370" },
 							warn = { fg = "#ffcb6b" },
-							info = { fg = "#82aaff" },
-							hint = { fg = "#c3e88d" },
+							info = { fg = "#82aaff" }, -- Dein Signature-Blau
+							hint = { fg = "#c3e88d" }, -- Dein Key-Grün
 						},
 						colored = true,
 						update_in_insert = false,
 						always_visible = true,
 					},
+					{ "filename", icon = "", padding = { left = 1, right = 1 } },
 				},
 				lualine_y = { { "fileformat" }, { "encoding" } },
 				lualine_x = {
