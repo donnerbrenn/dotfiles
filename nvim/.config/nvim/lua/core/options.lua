@@ -31,5 +31,6 @@ vim.filetype.add({
 		frag = "glsl",
 		vert = "glsl",
 		comp = "glsl",
+		jsonc = "json",
 	},
 })

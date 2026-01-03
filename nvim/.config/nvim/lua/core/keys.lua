@@ -1,5 +1,3 @@
-vim.g.maplocalleader = " "
-vim.g.mapleader = " "
 local set = vim.keymap.set
 -- === ERGONOMICS ===
 set("s", '"', '""<C-o>h')
