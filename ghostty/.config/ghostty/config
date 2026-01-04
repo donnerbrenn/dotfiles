@@ -2,9 +2,9 @@ keybind = ctrl+shift+r=reload_config
 background = #0d0d17
 font-family = RobotoMono Nerd Font
 font-size = 20
-#cursor-style = block
+cursor-style = block
 background-opacity = 0.8
-#background-blur = true
+background-blur = true
 window-padding-x = 10
 window-padding-y = 10
 custom-shader = shaders2/cursor_blaze_tapered.glsl
