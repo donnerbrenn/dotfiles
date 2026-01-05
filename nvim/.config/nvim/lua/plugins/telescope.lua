@@ -23,6 +23,14 @@ return {
 			end,
 			desc = "[S]earch [F]iles",
 		},
+		-- NEU: Emoji Search
+		{
+			"<leader>se",
+			function()
+				require("telescope.builtin").symbols({ sources = { "emoji" } })
+			end,
+			desc = "[S]earch [E]mojis",
+		},
 		{
 			"<leader>sm",
 			function()
@@ -111,6 +119,7 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-symbols.nvim", -- DAS FEHLTE: Die Munition für die Symbole
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{ "echasnovski/mini.icons", opts = {} },
 	},
