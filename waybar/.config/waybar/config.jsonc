@@ -2,8 +2,8 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
-    "spacing": 4,
+    "height": 18,
+    "spacing": 1,
     "modules-left": [
         "clock",
         "mpd"

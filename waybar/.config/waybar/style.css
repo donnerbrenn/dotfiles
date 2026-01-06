@@ -1,7 +1,7 @@
 /* Globale Font - minimalistisch & clean */
 * {
     font-family: "Roboto Nerd Font", monospace;
-    font-size: 19px; /* Kleiner wirkt moderner */
+    font-size: 16px; /* Kleiner wirkt moderner */
     font-weight: 500;
 }
 
@@ -25,9 +25,8 @@ window#waybar {
 #temperature,
 #tray,
 #custom-power,
-#power-profiles-daemon
-{
-    font-size: 22;
+#power-profiles-daemon {
+    font-size: 16px;
     padding: 0 10px;
     margin: 6px 4px;
     background: rgba(255, 255, 255, 0.05);
@@ -50,8 +49,7 @@ window#waybar {
 #pulseaudio:hover,
 #tray:hover,
 #custom-gpu:hover,
-#power-profiles-daemon:hover
-{
+#power-profiles-daemon:hover {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #ffffff;
