@@ -1,0 +1,102 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 4,
+    "modules-left": [
+        "clock",
+        "mpd"
+    ],
+    "modules-center": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        "power-profiles-daemon"
+    ],
+    "modules-right": [
+        "keyboard-state",
+        "cpu",
+        "custom/gpu",
+        "tray",
+        "pulseaudio",
+        "custom/power"
+    ],
+
+"hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "4": "󰭹", 
+            "5": "󰺻", 
+            "urgent": "",
+            "focused": "X",
+            "default": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "separate-outputs": true
+    },
+
+    "mpd": {
+        "format": "{stateIcon} {artist}: {title} {volume}%",
+        "format-disconnected": "Disconnected",
+        "format-stopped": "Stopped",
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click": "mpc toggle",
+        "on-click-right": "mpc next",
+        "on-scroll-up": "mpc volume +5",
+        "on-scroll-down": "mpc volume -5"
+    },
+
+    "clock": {
+        "format": "{:%H:%M} ",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+"cpu": {
+    "interval": 10,
+    "format": "{usage}% ",
+    "on-click": "alacritty --class=btop_float -e btop"
+},
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pwvucontrol"
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}",
+        "format-icons": {
+            "performance": "󰓅",
+            "balanced": "󰾅",
+            "power-saver": "󰾆"
+        }
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "wlogout -b 4 -c 1 -r 0 -m 200"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "custom/gpu": {
+        "exec": "gpu-usage-waybar | sed -u 's/|[^\\\"]*//g'",
+        "return-type": "json",
+        "format": "{} 󰾲",
+        "restart-interval": 5,
+    "on-click": "alacritty --class=nvtop_float -e nvtop"
+    }
+}
