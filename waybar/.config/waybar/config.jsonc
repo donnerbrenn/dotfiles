@@ -2,48 +2,62 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 18,
-    "spacing": 1,
+    "height": 24,
+    "spacing": 4,
     "modules-left": [
         "clock",
-        "mpd"
+        "hyprland/workspaces",
+        "mpris"
     ],
     "modules-center": [
-        "hyprland/workspaces",
-        "hyprland/window",
-        "power-profiles-daemon"
+        "hyprland/window"
     ],
     "modules-right": [
-        "keyboard-state",
+        "tray",
         "cpu",
         "custom/gpu",
-        "tray",
         "pulseaudio",
+        "bluetooth",
+        "network",
+        "power-profiles-daemon",
         "custom/power"
     ],
 
-"hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "4": "󰭹", 
-            "5": "󰺻", 
-            "urgent": "",
-            "focused": "X",
-            "default": ""
+    "clock": {
+        "format": "{:%H:%M} ",
+        "format-alt": "{:%A, %d. %B %Y} 󰃭",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>",
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#82aaff'><b>{}</b></span>",
+                "days": "<span color='#ffffff'><b>{}</b></span>",
+                "weeks": "<span color='#59bf8d'><b>W{}</b></span>",
+                "weekdays": "<span color='#59bf8d'><b>{}</b></span>",
+                "today": "<span color='#82aaff'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
         }
     },
-    "hyprland/window": {
-        "format": "{title}",
-        "max-length": 40,
-        "separate-outputs": true
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": true
     },
 
     "mpd": {
-        "format": "{stateIcon} {artist}: {title} {volume}%",
-        "format-disconnected": "Disconnected",
-        "format-stopped": "Stopped",
+        "format": "{stateIcon} {artist} - {title} - {elapsedTime:%M:%S}",
+        "format-disconnected": "󰝛 Disconnected",
+        "format-stopped": "󰓛 Stopped",
         "state-icons": {
             "paused": "",
             "playing": ""
@@ -54,29 +68,68 @@
         "on-scroll-down": "mpc volume -5"
     },
 
-    "clock": {
-        "format": "{:%H:%M} ",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+    "hyprland/workspaces": {
+        "sort-by-number": true,
+        "disable-scroll": false,
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "all-outputs": false,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "4": "󰭹",
+            "5": "󰺻",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
 
-"cpu": {
-    "interval": 10,
-    "format": "{usage}% ",
-    "on-click": "alacritty --class=btop_float -e btop"
-},
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 35,
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "󰈹 $1",
+            "(.*) - Alacritty": " $1",
+            "(.*) - Visual Studio Code": "󰨞 $1"
+        }
+    },
+
+    "network": {
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+        "on-click": "alacritty -e nmtui"
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "{usage}% ",
+        "on-click": "alacritty --class=btop_float -e btop"
+    },
+
+    "custom/gpu": {
+        "exec": "gpu-usage-waybar | sed -u 's/|[^\\\"]*//g'",
+        "return-type": "json",
+        "format": "{} 󰾲",
+        "restart-interval": 5,
+        "on-click": "alacritty --class=nvtop_float -e nvtop"
+    },
+
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-muted": "󰝟",
         "format-icons": {
             "default": ["", "", ""]
         },
-        "on-click": "pwvucontrol"
+        "on-click": "pwvucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
 
     "power-profiles-daemon": {
         "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}",
+        "tooltip-format": "Profil: {profile}",
         "format-icons": {
             "performance": "󰓅",
             "balanced": "󰾅",
@@ -84,19 +137,57 @@
         }
     },
 
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
+
     "custom/power": {
         "format": "⏻ ",
         "tooltip": false,
         "on-click": "wlogout -b 4 -c 1 -r 0 -m 200"
     },
-    "tray": {
-        "spacing": 10
+    "mpris": {
+        "interval": 1,
+        "format": "{player_icon} {artist} - {title} - {position} {status_icon}",
+        "format-paused": "{player_icon} {artist} - {title} - {position} {status_icon}",
+            "player-icons": {
+                "default": "▶",
+                "mpv": "",
+                "mpd": "󰎇",
+                "vlc": "󰕼",
+                "spotify": ""
+            },
+            "status-icons": {
+                "paused": "⏸",
+                "playing": "▶",
+                "stopped": "⏹"
+            },
+            "ignored-players": ["firefox", "chromium", "chrome", "brave"],
+            "max-length": 80
     },
-    "custom/gpu": {
-        "exec": "gpu-usage-waybar | sed -u 's/|[^\\\"]*//g'",
-        "return-type": "json",
-        "format": "{} 󰾲",
-        "restart-interval": 5,
-    "on-click": "alacritty --class=nvtop_float -e nvtop"
-    }
+    "bluetooth": {
+        "interval": 5,
+        "format": " {status}",
+        "format-disabled": "󰂲",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+            
+            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} verbunden",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} verbunden\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+            "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+            "on-click": "blueman-manager" 
+        }
+
 }

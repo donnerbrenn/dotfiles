@@ -118,6 +118,18 @@ set("o", "j", function()
 	require("flash").remote()
 end, { desc = "Remote Flash" })
 
+-- Dateiinhalt unter Cursor einfügen und direkt formatieren/einrücken
+vim.keymap.set("n", "<leader>gi", function()
+	local file = vim.fn.expand("<cfile>") -- Holt den Pfad unter dem Cursor
+	if vim.fn.filereadable(file) == 1 then
+		vim.cmd("read " .. file) -- Liest die Datei ein
+		vim.cmd("normal! ='[") -- Formatiert vom Start des eingefügten Blocks bis zum Ende
+		print("Datei eingefügt: " .. file)
+	else
+		print("Datei nicht gefunden: " .. file)
+	end
+end, { desc = "Insert file under cursor and indent" })
+
 -- === DADBOD ===
 -- set("n", "<leader>tu", "<cmd>DBUIToggle<cr>", { desc = "Toggle DB UI" })
 --
