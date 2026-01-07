@@ -100,13 +100,13 @@
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪",
         "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "on-click": "alacritty -e nmtui"
+        "on-click": "foot -e nmtui"
     },
 
     "cpu": {
         "interval": 5,
         "format": "{usage}% ",
-        "on-click": "alacritty --class=btop_float -e btop"
+        "on-click": "foot -a cpu_float -e ~/script/cpuread"
     },
 
     "custom/gpu": {
@@ -114,7 +114,7 @@
         "return-type": "json",
         "format": "{} 󰾲",
         "restart-interval": 5,
-        "on-click": "alacritty --class=nvtop_float -e nvtop"
+        "on-click": "foot -a nvtop_float -e nvtop"
     },
 
     "pulseaudio": {

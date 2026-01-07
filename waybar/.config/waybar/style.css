@@ -23,14 +23,14 @@ window#waybar,
 #bluetooth {
     padding: 0px 3px;
     margin: 5px 3px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(16, 16, 16, 0.9);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #workspaces button.focused {
     background: rgba(122, 162, 247, 0.2);
     color: #7aa2f7;
-    border: 1px solid rgba(122, 162, 247, 0.3);
+    border: 2px solid rgba(122, 162, 247, 0.3);
 }
 
 tooltip {
@@ -56,7 +56,7 @@ tooltip label {
 window#waybar:hover,
 #bluetooth:hover
 #power-profiles-daemon:hover {
-    background: rgba(122, 162, 255, 0.5);
+    background: rgba(61, 81, 128, 0.9);
 }
 
 #clock {
