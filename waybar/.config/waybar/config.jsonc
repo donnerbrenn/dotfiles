@@ -68,22 +68,25 @@
         "on-scroll-down": "mpc volume -5"
     },
 
-    "hyprland/workspaces": {
-        "sort-by-number": true,
-        "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace e-1",
-        "on-scroll-down": "hyprctl dispatch workspace e+1",
-        "all-outputs": false,
-        "format": "{name}: {icon}",
-        "format-icons": {
-            "4": "󰭹",
-            "5": "󰺻",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
+"hyprland/workspaces": {
+    "all-outputs": false,
+    "sort-by-number": true,
+    "active-only": false,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+        "active": "", 
+        "default": "",
+        "urgent": "",
+        "6": "󰭹",
+        "9": "󰺻"
     },
-
+    "persistent-workspaces": {
+        "DP-1": [1, 4, 7],
+        "DP-3": [2, 5, 8],
+        "DP-2": [3, 6, 9]
+    }
+},
     "hyprland/window": {
         "format": "{title}",
         "max-length": 35,
@@ -100,7 +103,7 @@
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪",
         "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "on-click": "foot -e nmtui"
+        "on-click": "networkmanager_dmenu"
     },
 
     "cpu": {

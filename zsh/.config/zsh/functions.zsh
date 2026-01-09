@@ -62,3 +62,7 @@ aliases() {
 
 zle -N reload_zshrc
 zle -N aliases
+
+function unzip_to_dir() {
+    unzip "$1" -d "${1%.zip}"
+}
