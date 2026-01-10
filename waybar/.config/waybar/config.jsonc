@@ -107,7 +107,7 @@
     },
 
     "cpu": {
-        "interval": 5,
+        "interval": 1,
         "format": "{usage}% ",
         "on-click": "foot -a cpu_float -e ~/script/cpuread"
     },
@@ -116,7 +116,7 @@
         "exec": "gpu-usage-waybar | sed -u 's/|[^\\\"]*//g'",
         "return-type": "json",
         "format": "{} 󰾲",
-        "restart-interval": 5,
+        "restart-interval": 1,
         "on-click": "foot -a nvtop_float -e nvtop"
     },
 
